@@ -24,6 +24,7 @@ public class RobotMap {
     public static DoubleSolenoid shooterTwoSol;
     public static DoubleSolenoid hookSol;
     public static DoubleSolenoid winchPTO;
+    public static DoubleSolenoid chassisGearSol;
     
 
     public static void init() {
@@ -63,6 +64,9 @@ public class RobotMap {
         
         winchPTO = new DoubleSolenoid(Constants.PCM_TWO_ID, Constants.Winch.PTO_FORWARD, Constants.Winch.PTO_REVERSE);
         LiveWindow.addActuator("Winch", "winchPTO", winchPTO);
+        
+        chassisGearSol = new DoubleSolenoid(Constants.PCM_TWO_ID, 0, 1);
+        LiveWindow.addActuator("Chassis", "chassisGesrSol", chassisGearSol);
         
         
     }

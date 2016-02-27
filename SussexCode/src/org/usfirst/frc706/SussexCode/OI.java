@@ -50,7 +50,8 @@ public class OI {
     	rb.whileHeld(new IntakeDrive(1));
     	lb.whileHeld(new IntakeDrive(-1));
     	
-    	leftTrigger.whenPressed(new TriggerToggle());
+    	leftTrigger.whenPressed(new GearLow());
+    	leftTrigger.whenReleased(new GearHigh());
     	rightTrigger.whenPressed(new Shoot());
     	
     	hookButton.whenPressed(new ExtendHook());
