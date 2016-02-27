@@ -6,7 +6,7 @@ import org.usfirst.frc706.SussexCode.Robot;
 public class Drive extends Command {
 	double leftSpeed=0;
 	double rightSpeed=0;
-	double deadZone = .05;
+	double deadZone = .02;
 	
     public Drive() {
     	requires(Robot.chassis);

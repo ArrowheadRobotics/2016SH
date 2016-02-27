@@ -17,7 +17,7 @@ public class IntakeStick extends Command {
     }
 
     protected void execute() {
-    	if(Robot.oi.xbox.getRawAxis(1) > 0.05 || Robot.oi.xbox.getRawAxis(1) < -0.05){
+    	if(Robot.oi.xbox.getRawAxis(1) > 0.1 || Robot.oi.xbox.getRawAxis(1) < -0.1){
     		Robot.intake.intakeAngleDrive.set((Robot.oi.xbox.getRawAxis(1))*0.6);
     	}
     	else {
