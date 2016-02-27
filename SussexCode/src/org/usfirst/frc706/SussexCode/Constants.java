@@ -59,9 +59,6 @@ public class Constants {
 	}
 	
 	public class Winch {
-		public static final int EXTEND_HOOK_DELAY = 500;
-		public static final int ENGAGE_WINCH_DELAY = 500;
-		public static final int DRIVE_WINCH_DELAY = 500;
 		
 		public static final double WINCH_DRIVE_SPEED = 1;
 		

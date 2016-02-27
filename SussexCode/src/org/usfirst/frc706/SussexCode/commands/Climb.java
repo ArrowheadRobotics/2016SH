@@ -11,6 +11,7 @@
 
 package org.usfirst.frc706.SussexCode.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc706.SussexCode.Constants;
@@ -21,11 +22,6 @@ import org.usfirst.frc706.SussexCode.Robot;
  */
 public class Climb extends Command {
 	
-	private int extendHookDelay = Constants.Winch.EXTEND_HOOK_DELAY;
-	private int engageWinchDelay = Constants.Winch.ENGAGE_WINCH_DELAY;
-	private int winchDriveDelay = Constants.Winch.DRIVE_WINCH_DELAY;
-	private long startTime = System.currentTimeMillis();
-	private long currentTime = 0;
 	private double driveSpeed = Constants.Winch.WINCH_DRIVE_SPEED;
 
     public Climb() {
@@ -39,31 +35,18 @@ public class Climb extends Command {
     protected void execute() {
     	
     	//put arm in place
-    	
-    	if(System.currentTimeMillis() > startTime + extendHookDelay){
-    		new ExtendHook();
-    		currentTime = extendHookDelay + currentTime + startTime;
-    	}
-    	
+    	Timer.delay(0.5);
+    	new ExtendHook();
+    	Timer.delay(0.5);
     	//lower arm
-    	
-    	if(System.currentTimeMillis() > currentTime + engageWinchDelay){
-    		new EngageWinch();
-    		currentTime = currentTime + engageWinchDelay;
-    	}
-    	
-    	if(System.currentTimeMillis() > currentTime + winchDriveDelay) {
-    		Robot.chassis.move(driveSpeed, driveSpeed);
-    		currentTime = currentTime + winchDriveDelay;
-    	}
+    	Timer.delay(0.5);
+    	new EngageWinch();
+    	Timer.delay(0.5);
+    	Robot.chassis.move(driveSpeed, driveSpeed);
     }
 
     protected boolean isFinished() {
-    	if(System.currentTimeMillis() > currentTime){
-    		return true;
-    	}else{
-    		return false;
-    	}
+    	return true;
     }
 
 
