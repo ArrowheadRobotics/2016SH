@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
-public abstract class Shoot extends Command {
+public class Shoot extends Command {
 
     public Shoot() {
     	requires(Robot.shooter);
