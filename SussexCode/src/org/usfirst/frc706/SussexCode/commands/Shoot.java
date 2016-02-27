@@ -1,47 +1,34 @@
 package org.usfirst.frc706.SussexCode.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
-public class Shoot extends Command {
-	public long startTime;
-	public long currentTime;
-	public int retractShooterDelay=500;
-	public int extendTriggerDelay=500;
-	public int extendShooterDelay=500;
-	private boolean done=false;
-	
+public abstract class Shoot extends Command {
+
     public Shoot() {
     	requires(Robot.shooter);
-    }
-  
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	startTime=System.currentTimeMillis();
-    	new TriggerToggle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	currentTime = System.currentTimeMillis();
-    	if(currentTime-startTime>retractShooterDelay&&currentTime-startTime<(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
-   			new TogglePiston();
-   		}
-   		if(currentTime-startTime>(retractShooterDelay+extendTriggerDelay)) {
-   			new TriggerToggle();
-   		}
-   		if(currentTime-startTime>(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
-   			new TogglePiston();
-   			done=true;    		
-    	}
+    	Robot.shooter.shooterTriggerSol.set(Value.kForward);
+    	Timer.delay(0.5);
+    	RobotMap.shooterOneSol.set(Value.kReverse);
+    	RobotMap.shooterTwoSol.set(Value.kReverse);
+    	Timer.delay(0.5);
+    	RobotMap.shooterTriggerSol.set(Value.kReverse);
+    	Timer.delay(0.25);
+    	RobotMap.shooterOneSol.set(Value.kForward);
+    	RobotMap.shooterTwoSol.set(Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return false;
     }
 
     // Called once after isFinished returns true
