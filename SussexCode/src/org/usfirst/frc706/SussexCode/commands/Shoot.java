@@ -27,13 +27,13 @@ public class Shoot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	currentTime = System.currentTimeMillis();
-    	if(currentTime>retractShooterDelay&&currentTime<retractShooterDelay+extendTriggerDelay+extendShooterDelay) {
+    	if(startTime>retractShooterDelay&&currentTime<(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
    			new TogglePiston();
    		}
-   		if(currentTime>retractShooterDelay+extendTriggerDelay) {
+   		if(startTime>(retractShooterDelay+extendTriggerDelay)) {
    			new TriggerToggle();
    		}
-   		if(currentTime>retractShooterDelay+extendTriggerDelay+extendShooterDelay) {
+   		if(startTime>(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
    			new TogglePiston();
    			done=true;    		
     	}
