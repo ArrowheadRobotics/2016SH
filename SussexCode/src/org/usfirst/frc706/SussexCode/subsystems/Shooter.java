@@ -18,43 +18,13 @@ public class Shooter extends Subsystem {
     private final double D = Constants.Shooter.D_SHOOTER;
 
     public Shooter(){
-    	initShooterPID();
-    }
-    
-    public void initShooterPID() {
-    	shooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    	shooterAngleDrive.reverseSensor(false);
-    	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	shooterAngleDrive.setPID(P, I, D);
-    }
-    
-    public void shooterEnable() {
-    	shooterAngleDrive.enable();
-    }
-    
-    public void shooterDisable() {
-    	shooterAngleDrive.disable();
-    }
-    
-    public void setShooterPos(double pos){
-    	shooterAngleDrive.set(pos);
-    }
-    
-    public void zeroEnc() {
-    	shooterAngleDrive.setPosition(0);
-    }
-    
-    public boolean topLimit() {
-    	return shooterAngleDrive.isRevLimitSwitchClosed();
-    }
-    
-    public void posMode() {
-    	shooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    }
-    
-    public void vBusMode() {
+    	System.out.println("Init PID");
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
+    	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	shooterAngleDrive.reverseOutput(true);
+    	shooterAngleDrive.setPID(0.2, 0.000005, .3);
     }
+    
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

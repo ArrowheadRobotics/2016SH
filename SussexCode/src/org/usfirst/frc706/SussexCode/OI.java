@@ -46,6 +46,7 @@ public class OI {
     	R3 = new JoystickButton(rightJoy, 5);
     	
     	a.whenPressed(new ZeroShooter());
+    	b.whenPressed(new SetPos());
     	
     	hookButton = new JoystickButton(leftJoy, 2);
     	
