@@ -27,13 +27,13 @@ public class Shoot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	currentTime = System.currentTimeMillis();
-    	if(startTime>retractShooterDelay&&currentTime<(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
+    	if(currentTime-startTime>retractShooterDelay&&currentTime-startTime<(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
    			new TogglePiston();
    		}
-   		if(startTime>(retractShooterDelay+extendTriggerDelay)) {
+   		if(currentTime-startTime>(retractShooterDelay+extendTriggerDelay)) {
    			new TriggerToggle();
    		}
-   		if(startTime>(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
+   		if(currentTime-startTime>(retractShooterDelay+extendTriggerDelay+extendShooterDelay)) {
    			new TogglePiston();
    			done=true;    		
     	}
@@ -46,7 +46,6 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	done=false;
     }
 
     // Called when another command which requires one or more of the same
