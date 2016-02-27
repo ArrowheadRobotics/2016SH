@@ -30,6 +30,7 @@ public class ZeroShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	RobotMap.shootershooterAngleDrive.set(0);
     	RobotMap.shootershooterAngleDrive.setPosition(0);
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	RobotMap.shootershooterAngleDrive.set(0);

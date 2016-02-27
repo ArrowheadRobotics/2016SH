@@ -24,7 +24,7 @@ public class Shooter extends Subsystem {
     public void initShooterPID() {
     	shooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	shooterAngleDrive.reverseSensor(false);
-    	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+    	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.setPID(P, I, D);
     }
     
