@@ -1,5 +1,6 @@
 package org.usfirst.frc706.SussexCode.commands;
 
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc706.SussexCode.Robot;
@@ -12,8 +13,8 @@ public class ZeroShooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.shooterEnable();
-    	Robot.shooter.vBusMode();
+    	RobotMap.shootershooterAngleDrive.enableControl();
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	RobotMap.shootershooterAngleDrive.set(.2);
     }
 
@@ -24,15 +25,15 @@ public class ZeroShooter extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooter.topLimit();
+        return RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.zeroEnc();
-    	Robot.shooter.posMode();
+    	RobotMap.shootershooterAngleDrive.setPosition(0);
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	RobotMap.shootershooterAngleDrive.set(0);
-    	Robot.shooter.shooterDisable();
+    	//RobotMap.shootershooterAngleDrive.disableControl();
     }
 
     // Called when another command which requires one or more of the same
