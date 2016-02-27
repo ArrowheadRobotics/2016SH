@@ -45,6 +45,8 @@ public class OI {
     	R2 = new JoystickButton(rightJoy, 3);
     	R3 = new JoystickButton(rightJoy, 5);
     	
+    	a.whenPressed(new ZeroShooter());
+    	
     	hookButton = new JoystickButton(leftJoy, 2);
     	
     	rb.whileHeld(new IntakeDrive(1));
