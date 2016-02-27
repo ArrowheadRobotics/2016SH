@@ -7,7 +7,6 @@ public class Navigator {
 	
 	public Navigator() {
 		this.ahrs = Robot.nav;
-		this.ahrs.reset();
 	}
 	
 	public void reset() {
