@@ -15,20 +15,20 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.shooterTriggerSol.set(Value.kForward);
-    	Timer.delay(0.5);
+    	Robot.shooter.shooterTriggerSol.set(Value.kReverse);
+    	Timer.delay(.25);
     	RobotMap.shooterOneSol.set(Value.kReverse);
     	RobotMap.shooterTwoSol.set(Value.kReverse);
-    	Timer.delay(0.5);
-    	RobotMap.shooterTriggerSol.set(Value.kReverse);
-    	Timer.delay(0.25);
+    	Timer.delay(.5);
+    	RobotMap.shooterTriggerSol.set(Value.kForward);
+    	Timer.delay(.15);
     	RobotMap.shooterOneSol.set(Value.kForward);
     	RobotMap.shooterTwoSol.set(Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -39,4 +39,10 @@ public class Shoot extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+
+	@Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
 }

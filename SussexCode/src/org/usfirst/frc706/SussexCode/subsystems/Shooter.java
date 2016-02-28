@@ -22,7 +22,7 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
-    	shooterAngleDrive.setPID(0.2, 0.000005, .3);
+    	shooterAngleDrive.setPID(0.1, 0.00002, .3);
     }
     
     
