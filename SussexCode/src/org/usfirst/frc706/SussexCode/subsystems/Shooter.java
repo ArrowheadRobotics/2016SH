@@ -18,7 +18,7 @@ public class Shooter extends Subsystem {
     private final double D = Constants.Shooter.D_SHOOTER;
 
     public Shooter(){
-    	System.out.println("Init PID");
+    	System.out.println("Init Shooter PID");
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
