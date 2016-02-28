@@ -10,21 +10,23 @@ import edu.wpi.first.wpilibj.CANTalon.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem {
+	public int simPos;
     public final CANTalon intakeDrive = RobotMap.intakeintakeDrive;
     public final CANTalon intakeAngleDrive = RobotMap.intakeintakeAngleDrive;
     
     public Intake(){
+    	//DO NOT REVERSE OUTPUT
     	System.out.println("Init PID");
     	intakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	intakeAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	intakeAngleDrive.reverseOutput(true);
-    	intakeAngleDrive.setPID(0.1, 0.00002, .3);
+    	intakeAngleDrive.setPID(2.03, .0001, .382);
+    	simPos = 0;
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new IntakeStick());
+    	setDefaultCommand(new SetIntakePos());
     }
 }
 

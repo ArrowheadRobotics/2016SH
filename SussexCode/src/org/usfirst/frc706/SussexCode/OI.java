@@ -45,15 +45,19 @@ public class OI {
     	R2 = new JoystickButton(rightJoy, 3);
     	R3 = new JoystickButton(rightJoy, 5);
     	
-    	a.whenPressed(new ZeroShooter());
-    	b.whenPressed(new SetShooterPos());
+    	//a.whenPressed(new ZeroShooter());
+    	//b.whenPressed(new SetShooterPos());
     	x.whenPressed(new ZeroIntake());
-    	y.whenPressed(new SetIntakePos());
+    	//y.whenPressed(new SetIntakePos());
+    	a.whenPressed(new setSim(600));
+    	b.whenPressed(new setSim(50));
     	
     	hookButton = new JoystickButton(leftJoy, 2);
     	
     	rb.whileHeld(new IntakeDrive(1));
     	lb.whileHeld(new IntakeDrive(-1));
+    	rb.whenReleased(new IntakeStop());
+    	lb.whenReleased(new IntakeStop());
     	
     	leftTrigger.whenPressed(new GearLow());
     	leftTrigger.whenReleased(new GearHigh());

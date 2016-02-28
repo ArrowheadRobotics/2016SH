@@ -15,12 +15,13 @@ public class ZeroIntake extends Command {
     protected void initialize() {
     	RobotMap.intakeintakeAngleDrive.enableControl();
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.intakeintakeAngleDrive.set(.2);
+    	RobotMap.intakeintakeAngleDrive.set(.4);
+    	System.out.println(RobotMap.intakeintakeAngleDrive.getEncPosition());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.intakeintakeAngleDrive.set(.2);
+    	RobotMap.intakeintakeAngleDrive.set(.4);
     	System.out.println("Down");
     }
 

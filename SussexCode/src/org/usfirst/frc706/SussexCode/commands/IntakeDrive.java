@@ -25,7 +25,6 @@ public class IntakeDrive extends Command {
 
     protected void end() {
     	Robot.intake.intakeDrive.set(0);
-    	Robot.intake.intakeDrive.enableBrakeMode(true);
     }
 
     protected void interrupted() {

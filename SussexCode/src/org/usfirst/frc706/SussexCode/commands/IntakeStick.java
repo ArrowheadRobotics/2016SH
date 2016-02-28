@@ -13,7 +13,6 @@ public class IntakeStick extends Command {
     }
 
     protected void initialize() {
-    	Robot.intake.startTimer();
     }
 
     protected void execute() {
