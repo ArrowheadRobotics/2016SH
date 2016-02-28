@@ -5,14 +5,9 @@ public class Constants {
 	public static final int PCM_TWO_ID = 9;
 	
 	public class Setpoints {
-		public static final double POINT_ONE_SHOOTER = 0;
-		public static final double POINT_ONE_INTAKE = 2104;
+		public static final double INTAKE_HORIZONTAL = -975;
+		public static final double INTAKE_VERTICAL = -2515;
 
-		public static final double POINT_TWO_SHOOTER = 0;
-		public static final double POINT_TWO_INTAKE = 0;
-
-		public static final double POINT_THREE_SHOOTER = 0;
-		public static final double POINT_THREE_INTAKE = 0;
 	}
 	
 	public class Chassis {
@@ -20,14 +15,13 @@ public class Constants {
 		public static final int LEFT_MOTOR_TWO = 3;
 		public static final int RIGHT_MOTOR_ONE = 4;
 		public static final int RIGHT_MOTOR_TWO = 5;
-		public static final int SPIKE_PORT = 0;
 	}
 	
 	public class Intake {
 		//PID
-		public static final double P_INTAKE = 0.25;
-		public static final double I_INTAKE = 0;
-		public static final double D_INTAKE = 0;
+		public static final double P_INTAKE = 0.203;
+		public static final double I_INTAKE = 0.0001;
+		public static final double D_INTAKE = 0.382;
 		
 		//Talon CAN IDs
 		public static final int INTAKE_DRIVE = 0;

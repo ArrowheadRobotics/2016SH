@@ -13,13 +13,16 @@ public class Intake extends Subsystem {
 	public int simPos;
     public final CANTalon intakeDrive = RobotMap.intakeintakeDrive;
     public final CANTalon intakeAngleDrive = RobotMap.intakeintakeAngleDrive;
+    public final double P = Constants.Intake.P_INTAKE;
+    public final double I = Constants.Intake.I_INTAKE;
+    public final double D = Constants.Intake.D_INTAKE;
     
     public Intake(){
     	//DO NOT REVERSE OUTPUT
     	System.out.println("Init PID");
     	intakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	intakeAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	intakeAngleDrive.setPID(2.03, .0001, .382);
+    	intakeAngleDrive.setPID(P, I, D);
     	simPos = 0;
     }
 
