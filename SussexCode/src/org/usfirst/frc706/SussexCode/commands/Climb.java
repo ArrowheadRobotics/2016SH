@@ -22,7 +22,7 @@ import org.usfirst.frc706.SussexCode.Robot;
  */
 public class Climb extends Command {
 	
-	private double driveSpeed = Constants.Winch.WINCH_DRIVE_SPEED;
+	private double driveSpeed = Constants.Speeds.WINCH_DRIVE_SPEED;
 
     public Climb() {
     	

@@ -16,7 +16,7 @@ public class IntakeDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.intake.intakeDrive.set(dir * Constants.Intake.INTAKE_DRIVE_SPEED);
+    	Robot.intake.intakeDrive.set(dir * Constants.Speeds.INTAKE_DRIVE_SPEED);
     }
 
     protected boolean isFinished() {

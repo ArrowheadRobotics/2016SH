@@ -13,16 +13,18 @@ public class Shooter extends Subsystem {
 	
     public final CANTalon shooterAngleDrive = RobotMap.shootershooterAngleDrive;
     public final DoubleSolenoid shooterTriggerSol = RobotMap.shooterTriggerSol;
-    private final double P = Constants.Shooter.P_SHOOTER;
-    private final double I = Constants.Shooter.I_SHOOTER;
-    private final double D = Constants.Shooter.D_SHOOTER;
+    private final double P = Constants.PID.P_SHOOTER;
+    private final double I = Constants.PID.I_SHOOTER;
+    private final double D = Constants.PID.D_SHOOTER;
+    
+    public int position;
 
     public Shooter(){
     	System.out.println("Init Shooter PID");
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
-    	shooterAngleDrive.setPID(0.1, 0.00002, .3);
+    	shooterAngleDrive.setPID(P, I, D);
     }
     
     

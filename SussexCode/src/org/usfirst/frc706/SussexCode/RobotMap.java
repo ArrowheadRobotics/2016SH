@@ -9,65 +9,79 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class RobotMap {
-
+	/*
+	 * START VARIABLE DECLARATIONS
+	 */
+	//Talons
 	public static CANTalon chassisrightDriveOne;
     public static CANTalon chassisrightDriveTwo;
     public static CANTalon chassisleftDriveOne;
     public static CANTalon chassisleftDriveTwo;
-    
     public static CANTalon intakeintakeDrive;
     public static CANTalon intakeintakeAngleDrive;
-    
     public static CANTalon shootershooterAngleDrive;
+    //Solenoids
     public static DoubleSolenoid shooterTriggerSol;
     public static DoubleSolenoid shooterOneSol;
     public static DoubleSolenoid shooterTwoSol;
     public static DoubleSolenoid hookSol;
     public static DoubleSolenoid winchPTO;
     public static DoubleSolenoid chassisGearSol;
-    
+    /*
+     * END VARIABLE DECLARATIONS
+     */
 
     public static void init() {
     	
-        chassisrightDriveOne = new CANTalon(Constants.Chassis.RIGHT_MOTOR_ONE);
+    	/*
+    	 * START TALONS
+    	 */
+        chassisrightDriveOne = new CANTalon(Constants.Talons.RIGHT_MOTOR_ONE);
         LiveWindow.addActuator("Chassis", "rightDriveOne", chassisrightDriveOne);
         
-        chassisrightDriveTwo = new CANTalon(Constants.Chassis.RIGHT_MOTOR_TWO);
+        chassisrightDriveTwo = new CANTalon(Constants.Talons.RIGHT_MOTOR_TWO);
         LiveWindow.addActuator("Chassis", "rightDriveTwo", chassisrightDriveTwo);
         
-        chassisleftDriveOne = new CANTalon(Constants.Chassis.LEFT_MOTOR_ONE);
+        chassisleftDriveOne = new CANTalon(Constants.Talons.LEFT_MOTOR_ONE);
         LiveWindow.addActuator("Chassis", "leftDriveOne", chassisleftDriveOne);
         
-        chassisleftDriveTwo = new CANTalon(Constants.Chassis.LEFT_MOTOR_TWO);
+        chassisleftDriveTwo = new CANTalon(Constants.Talons.LEFT_MOTOR_TWO);
         LiveWindow.addActuator("Chassis", "leftDriveTwo", chassisleftDriveTwo);
         
-        intakeintakeDrive = new CANTalon(Constants.Intake.INTAKE_DRIVE);
+        intakeintakeDrive = new CANTalon(Constants.Talons.INTAKE_DRIVE);
         LiveWindow.addActuator("Intake", "intakeDrive", intakeintakeDrive);
         
-        intakeintakeAngleDrive = new CANTalon(Constants.Intake.INTAKE_ANGLE);
+        intakeintakeAngleDrive = new CANTalon(Constants.Talons.INTAKE_ANGLE);
         LiveWindow.addActuator("Intake", "intakeAngleDrive", intakeintakeAngleDrive);
         
-        shootershooterAngleDrive = new CANTalon(Constants.Shooter.SHOOTER_ANGLE);
+        shootershooterAngleDrive = new CANTalon(Constants.Talons.SHOOTER_ANGLE);
         LiveWindow.addActuator("Shooter", "shooterAngleDrive", shootershooterAngleDrive);
+        /*
+         * END TALONS
+         */
         
-        shooterTriggerSol = new DoubleSolenoid(Constants.PCM_ONE_ID, Constants.Shooter.TRIGGER_SOL_FORWARD, Constants.Shooter.TRIGGER_SOL_REVERSE);
+        /*
+         * START PCM & SOLENOIDS
+         */
+        shooterTriggerSol = new DoubleSolenoid(Constants.PCM.PCM_ONE_ID, Constants.PCM.TRIGGER_SOL_FORWARD, Constants.PCM.TRIGGER_SOL_REVERSE);
         LiveWindow.addActuator("Shooter", "shooterTriggerSol", shooterTriggerSol);
         
-        shooterOneSol = new DoubleSolenoid(Constants.PCM_ONE_ID, Constants.Shooter.SHOOTER_SOL_ONE_FORWARD, Constants.Shooter.SHOOTER_SOL_ONE_REVERSE);
+        shooterOneSol = new DoubleSolenoid(Constants.PCM.PCM_ONE_ID, Constants.PCM.SHOOTER_SOL_ONE_FORWARD, Constants.PCM.SHOOTER_SOL_ONE_REVERSE);
         LiveWindow.addActuator("Shooter", "shooterSol", shooterOneSol);
         
-        shooterTwoSol = new DoubleSolenoid(Constants.PCM_ONE_ID, Constants.Shooter.SHOOTER_SOL_TWO_FORWARD, Constants.Shooter.SHOOTER_SOL_TWO_REVERSE);
+        shooterTwoSol = new DoubleSolenoid(Constants.PCM.PCM_ONE_ID, Constants.PCM.SHOOTER_SOL_TWO_FORWARD, Constants.PCM.SHOOTER_SOL_TWO_REVERSE);
         LiveWindow.addActuator("Shooter", "shooter2Sol", shooterTwoSol);
         
-        hookSol = new DoubleSolenoid(Constants.PCM_ONE_ID, 6, 7);
+        hookSol = new DoubleSolenoid(Constants.PCM.PCM_ONE_ID, 6, 7);
         LiveWindow.addActuator("Winch", "hookSol", hookSol);
         
-        winchPTO = new DoubleSolenoid(Constants.PCM_TWO_ID, Constants.Winch.PTO_FORWARD, Constants.Winch.PTO_REVERSE);
+        winchPTO = new DoubleSolenoid(Constants.PCM.PCM_TWO_ID, Constants.PCM.PTO_FORWARD, Constants.PCM.PTO_REVERSE);
         LiveWindow.addActuator("Winch", "winchPTO", winchPTO);
         
-        chassisGearSol = new DoubleSolenoid(Constants.PCM_TWO_ID, 0, 1);
-        LiveWindow.addActuator("Chassis", "chassisGesrSol", chassisGearSol);
-        
-        
+        chassisGearSol = new DoubleSolenoid(Constants.PCM.PCM_TWO_ID, 0, 1);
+        LiveWindow.addActuator("Chassis", "chassisGesrSol", chassisGearSol);   
+        /*
+         * END PCM & SOLENOIDS
+         */
     }
 }

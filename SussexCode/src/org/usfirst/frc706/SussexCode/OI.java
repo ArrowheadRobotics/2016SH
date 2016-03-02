@@ -7,23 +7,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
+	//Joysticks
 	public Joystick leftJoy;
 	public Joystick rightJoy;
 	public Joystick xbox;
 	
+	//Xbox Buttons
 	public JoystickButton a;
 	public JoystickButton b;
 	public JoystickButton x;
 	public JoystickButton y;
 	public JoystickButton rb;
 	public JoystickButton lb;
+	public JoystickButton start;
+	
+	//Joystick Buttons
 	public JoystickButton rightTrigger;
 	public JoystickButton leftTrigger;
-
-	public JoystickButton R1;
-	public JoystickButton R2;
-	public JoystickButton R3;
-	
 	public JoystickButton hookButton;
 	
     public OI() {
@@ -40,10 +40,8 @@ public class OI {
     	rb = new JoystickButton(xbox, Constants.Controls.RB);
     	rightTrigger = new JoystickButton(rightJoy, Constants.Controls.RIGHT_JOY_TRIGGER);
     	leftTrigger = new JoystickButton(leftJoy, Constants.Controls.LEFT_JOY_TRIGGER);
-    	
-    	R1 = new JoystickButton(rightJoy, 4);
-    	R2 = new JoystickButton(rightJoy, 3);
-    	R3 = new JoystickButton(rightJoy, 5);
+    	start = new JoystickButton(xbox, Constants.Controls.START);
+
     	
     	//a.whenPressed(new ZeroShooter());
     	//b.whenPressed(new SetShooterPos());
@@ -65,10 +63,6 @@ public class OI {
     	
     	hookButton.whenPressed(new ExtendHook());
     	
-    	//R1.whileHeld(new Setpoints(1));
-    	//R2.whileHeld(new Setpoints(2));
-    	//R3.whileHeld(new Setpoints(3));
-    	
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("Drive", new Drive());
@@ -77,10 +71,11 @@ public class OI {
 
     }
 
+    //Returns Speed of Left Joystick
     public double getLeftSpeed() {
     	return Robot.oi.leftJoy.getY();
     }
-    
+    //Returns Speed of Right Joystick
     public double getRightSpeed() {
     	return Robot.oi.rightJoy.getY();
     }
