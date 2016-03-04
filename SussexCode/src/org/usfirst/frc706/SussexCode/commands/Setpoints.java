@@ -9,10 +9,12 @@ import org.usfirst.frc706.SussexCode.Robot;
 public class Setpoints extends Command {
 	
 	public int mode;
+	public int current;
 	
     public Setpoints(int point) {
     	requires(Robot.shooter);
     	mode = point;
+    	current = point;
     }
 
     // Called just before this Command runs the first time
@@ -24,17 +26,34 @@ public class Setpoints extends Command {
     	//MODE 1 = SHOOT SETPOINT
     	if(mode == 1) {
     		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
-    		Timer.delay(0.5);	
+    		Robot.intake.changePos(Constants.Setpoints.INTAKE_LOWER);
     	}
     	//MODE 2 = HOLD SETPOINT
     	else if(mode == 2) {
-    		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
-    		Timer.delay(0.5);
+    		if(current == 3) {
+    			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
+    			Timer.delay(1);
+    			Robot.intake.changePos(Constants.Setpoints.INTAKE_VERTICAL);
+    		}
+    		else {
+    			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
+    			Robot.intake.changePos(Constants.Setpoints.INTAKE_VERTICAL);
+    		}
     	}
+    	//MODE 3 = INTAKE SETPOINT
     	else if(mode == 3) {
-    		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
-    		Timer.delay(0.5);
+    		if(current == 2) {
+    			Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
+    			Timer.delay(1);
+    			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
+    		}
+    		else {
+    			Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
+    			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
+    		}
+    		
     	}
+    	current = Robot.shooter.position;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

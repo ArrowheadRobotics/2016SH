@@ -19,16 +19,10 @@ public class SetIntakePos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.intake.simPos >= 500) {
+    	if(Robot.intake.hasZeroed) {
     		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-    		RobotMap.intakeintakeAngleDrive.set(-975);
+    		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
     	}
-    	else {
-    		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-    		RobotMap.intakeintakeAngleDrive.set(-2515);
-    	}
-    	
-    	System.out.println(RobotMap.intakeintakeAngleDrive.getEncPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

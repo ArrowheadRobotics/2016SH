@@ -3,6 +3,8 @@ package org.usfirst.frc706.SussexCode.commands;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
@@ -13,6 +15,7 @@ public class ZeroIntake extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.intake.hasZeroed = false;
     	RobotMap.intakeintakeAngleDrive.enableControl();
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	RobotMap.intakeintakeAngleDrive.set(.4);
@@ -40,6 +43,7 @@ public class ZeroIntake extends Command {
     	//RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     	//RobotMap.intakeintakeAngleDrive.set(0);
     	System.out.println("done");
+    	Robot.intake.hasZeroed = true;
     }
 
     // Called when another command which requires one or more of the same
