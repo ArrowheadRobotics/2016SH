@@ -1,38 +1,44 @@
 package org.usfirst.frc706.SussexCode.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc706.SussexCode.Robot;
-import org.usfirst.frc706.SussexCode.RobotMap;
 
-public class SetShooterPos extends Command {
+import org.usfirst.frc706.SussexCode.Constants;
+import org.usfirst.frc706.SussexCode.Robot;
+
+public class Setpoints extends Command {
 	
-    public SetShooterPos() {
+	public int mode;
+	
+    public Setpoints(int point) {
     	requires(Robot.shooter);
+    	mode = point;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.shootershooterAngleDrive.enable();
-    	System.out.println("CONTROL ENABLED");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.intake.simPos >= 500) {
-    		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    		//RobotMap.shootershooterAngleDrive.set(-975);
+    	//MODE 1 = SHOOT SETPOINT
+    	if(mode == 1) {
+    		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
+    		Timer.delay(0.5);	
     	}
-    	else {
-    		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    		//RobotMap.shootershooterAngleDrive.set(-2515);
+    	//MODE 2 = HOLD SETPOINT
+    	else if(mode == 2) {
+    		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
+    		Timer.delay(0.5);
     	}
-    	
-    	System.out.println(RobotMap.shootershooterAngleDrive.getEncPosition());
+    	else if(mode == 3) {
+    		Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
+    		Timer.delay(0.5);
+    	}
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

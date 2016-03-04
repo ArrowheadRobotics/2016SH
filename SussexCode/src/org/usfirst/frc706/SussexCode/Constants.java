@@ -4,8 +4,14 @@ public class Constants {
 	
 	public class Setpoints {
 		//Intake
-		public static final double INTAKE_HORIZONTAL = -975;
-		public static final double INTAKE_VERTICAL = -2515;
+		public static final int INTAKE_LOWER = 0; 
+		public static final int INTAKE_HORIZONTAL = -975;
+		public static final int INTAKE_VERTICAL = -2515;
+		
+		//Shooter
+		public static final int SHOOTER_TOP = 7300;
+		public static final int SHOOTER_HOLD = 4200;
+		public static final int SHOOTER_DOWN = 0;
 	}
 	
 	public class PID {
@@ -15,9 +21,9 @@ public class Constants {
 		public static final double D_INTAKE = 0.382;
 		
 		//Shooter
-		public static final double P_SHOOTER = 0.1;
-		public static final double I_SHOOTER = 0.00002;
-		public static final double D_SHOOTER = 0.3;
+		public static final double P_SHOOTER = 0.5;
+		public static final double I_SHOOTER = 0;
+		public static final double D_SHOOTER = 100;
 	}
 	
 	public class Controls {

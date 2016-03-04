@@ -35,6 +35,7 @@ public class Climb extends Command {
     protected void execute() {
     	
     	//put arm in place
+    	
     	Timer.delay(0.5);
     	new ExtendHook();
     	Timer.delay(0.5);

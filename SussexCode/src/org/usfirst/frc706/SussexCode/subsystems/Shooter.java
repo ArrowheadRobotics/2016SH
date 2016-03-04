@@ -18,6 +18,7 @@ public class Shooter extends Subsystem {
     private final double D = Constants.PID.D_SHOOTER;
     
     public int position;
+    public boolean hasZeroed;
 
     public Shooter(){
     	System.out.println("Init Shooter PID");
@@ -25,13 +26,19 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
     	shooterAngleDrive.setPID(P, I, D);
+    	position = Constants.Setpoints.SHOOTER_TOP;
+    	hasZeroed = false;
     }
     
+    public void changePos(int target) {
+    	position = target;
+    }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ShooterStick());
+    	//setDefaultCommand(new ShooterStick());
+    	setDefaultCommand(new ShooterPos());
    }
 
    

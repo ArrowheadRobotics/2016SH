@@ -13,20 +13,21 @@ public class ZeroShooter extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.shooter.hasZeroed = false;
     	RobotMap.shootershooterAngleDrive.enableControl();
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.shootershooterAngleDrive.set(.2);
+    	RobotMap.shootershooterAngleDrive.set(-.4);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.shootershooterAngleDrive.set(.2);
+    	RobotMap.shootershooterAngleDrive.set(-.4);
     	System.out.println("Down");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.shootershooterAngleDrive.isFwdLimitSwitchClosed();
+        return RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed();
     }
 
     // Called once after isFinished returns true
@@ -34,11 +35,12 @@ public class ZeroShooter extends Command {
     	System.out.println("end");
     	RobotMap.shootershooterAngleDrive.set(0);
     	System.out.println("set");
-    	RobotMap.shootershooterAngleDrive.setEncPosition(0);
+    	RobotMap.shootershooterAngleDrive.setEncPosition(7300);
     	System.out.println("setEnc");
     	//RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	//RobotMap.shootershooterAngleDrive.set(0);
     	System.out.println("done");
+    	Robot.shooter.hasZeroed = true;
     }
 
     // Called when another command which requires one or more of the same
