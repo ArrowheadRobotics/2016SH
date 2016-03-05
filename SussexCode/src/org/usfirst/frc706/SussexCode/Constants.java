@@ -93,4 +93,10 @@ public class Constants {
 		public static final double WINCH_DRIVE_SPEED = 1;
 	}
 	
+	public class Encoders {
+		//Drive
+		public static final int LEFT_ENC_PORT = 0;
+		public static final int RIGHT_ENC_PORT = 1;
+	}
+	
 }
