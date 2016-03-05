@@ -23,7 +23,7 @@ public class IntakePos extends Command {
     		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
     	}
-    	//System.out.println("Intake Pos: " + RobotMap.intakeintakeAngleDrive.getEncPosition());
+    	System.out.println("Intake Pos: " + RobotMap.intakeintakeAngleDrive.getEncPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
