@@ -14,6 +14,8 @@ package org.usfirst.frc706.SussexCode.commands;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -89,7 +91,7 @@ public class AutonomousCommand extends Command {
     protected void crossDefense(){
     	switch(defense){
 		case 0:
-			//lower intake
+			//new Setpoints("intake");
 			new GearLow();
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(2);
@@ -97,6 +99,7 @@ public class AutonomousCommand extends Command {
 			while(detectCollision()==false || System.currentTimeMillis()<startTime+5000){
 				Robot.chassis.move(0.6, 0.6);
 			}
+			//Robot.intake.position = Constants.Setpoints.INTAKE_LOWER;
 			Robot.chassis.move(0, 0);
 			//raise intake
 			Robot.chassis.move(0.6, 0.6);
@@ -107,16 +110,19 @@ public class AutonomousCommand extends Command {
 			break;
 		case 1:
 			new GearLow();
+			new Setpoints("shoot");
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(2);
 			while(detectCollision()==false || System.currentTimeMillis()<startTime+5000){
 				Robot.chassis.move(0.6, 0.6);
 			}
 			Robot.chassis.move(0, 0);
-			//lower intake
+			Robot.intake.position = Constants.Setpoints.INTAKE_LOWER;
+			Timer.delay(500);
 			Robot.chassis.move(0.6, 0.6);
+			Timer.delay(500);
+			new Setpoints("shoot");
 			Timer.delay(3.0);
-			//raise intake
 			Robot.chassis.move(0, 0);
 			new GearHigh();
 			done = true;
