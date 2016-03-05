@@ -22,6 +22,7 @@ public class Setpoints extends Command {
     	/*System.out.println("goToLocation: " + goToLocation);
     	System.out.println("fromLocation: " + fromLocation);
     	System.out.println("--------------------");*/
+    	Robot.intake.stopPositionSet = false;
     	if(fromLocation.equals(""))
     	{
     		fromLocation = "shoot";
@@ -126,6 +127,7 @@ public class Setpoints extends Command {
     			Robot.intake.changePos(Constants.Setpoints.INTAKE_VERTICAL);
     	}
     	fromLocation = goToLocation;
+    	Robot.intake.shooterArmFromLocation = fromLocation;
     	System.out.println("======end function========");
     	/*System.out.println("updated fromLoc to: " + fromLocation);
     	System.out.println("goToLocation is: " + goToLocation);

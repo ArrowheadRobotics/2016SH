@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 	public int position;
 	public boolean hasZeroed;
+	public boolean stopPositionSet = false;
+	public String shooterArmFromLocation = "";
     public final CANTalon intakeDrive = RobotMap.intakeintakeDrive;
     public final CANTalon intakeAngleDrive = RobotMap.intakeintakeAngleDrive;
     public final double P = Constants.PID.P_INTAKE;
