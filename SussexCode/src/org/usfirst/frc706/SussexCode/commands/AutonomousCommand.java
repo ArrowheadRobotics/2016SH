@@ -86,10 +86,11 @@ public class AutonomousCommand extends Command {
     protected void interrupted() {
     }
     
-    void crossDefense(){
+    protected void crossDefense(){
     	switch(defense){
 		case 0:
 			//lower intake
+			new GearLow();
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(2);
 			startTime = System.currentTimeMillis();
@@ -101,17 +102,23 @@ public class AutonomousCommand extends Command {
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(4);
 			Robot.chassis.move(0, 0);
+			new GearHigh();
 			done = true;
 			break;
 		case 1:
+			new GearLow();
 			Robot.chassis.move(0.6, 0.6);
-			Timer.delay(3.0);
+			Timer.delay(2);
+			while(detectCollision()==false || System.currentTimeMillis()<startTime+5000){
+				Robot.chassis.move(0.6, 0.6);
+			}
 			Robot.chassis.move(0, 0);
 			//lower intake
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(3.0);
 			//raise intake
 			Robot.chassis.move(0, 0);
+			new GearHigh();
 			done = true;
 			break;
 		case 4:
