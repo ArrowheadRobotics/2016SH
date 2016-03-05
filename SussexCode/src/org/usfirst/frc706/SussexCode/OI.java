@@ -43,10 +43,10 @@ public class OI {
     	start = new JoystickButton(xbox, Constants.Controls.START);
 
     	
-    	x.whenPressed(new ZeroIntake());
-    	x.whenPressed(new ZeroShooter());
-    	a.whenPressed(new Setpoints(1));
-    	b.whenPressed(new Setpoints(2));
+    	start.whenPressed(new ZeroIntake());
+    	//start.whenPressed(new ZeroShooter());
+    	b.whenPressed(new Setpoints(1));
+    	a.whenPressed(new Setpoints(2));
     	y.whenPressed(new Setpoints(3));
     	
     	hookButton = new JoystickButton(leftJoy, 2);

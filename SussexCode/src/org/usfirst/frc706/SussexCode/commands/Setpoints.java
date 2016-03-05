@@ -19,6 +19,7 @@ public class Setpoints extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("MODE: " + mode);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -53,7 +54,7 @@ public class Setpoints extends Command {
     		}
     		
     	}
-    	current = Robot.shooter.position;
+    	current = mode;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

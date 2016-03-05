@@ -35,7 +35,7 @@ public class ZeroShooter extends Command {
     	System.out.println("end");
     	RobotMap.shootershooterAngleDrive.set(0);
     	System.out.println("set");
-    	RobotMap.shootershooterAngleDrive.setEncPosition(7300);
+    	RobotMap.shootershooterAngleDrive.setPosition(0);
     	System.out.println("setEnc");
     	//RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	//RobotMap.shootershooterAngleDrive.set(0);

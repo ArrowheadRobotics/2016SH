@@ -31,8 +31,8 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	// setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new IntakeStick());
-    	//setDefaultCommand(new IntakePos());
+    	//setDefaultCommand(new IntakeStick());
+    	setDefaultCommand(new IntakePos());
     }
 
 	public void changePos(int pos) {
