@@ -41,7 +41,7 @@ public class ZeroIntake extends Command {
     	System.out.println("setEnc" + RobotMap.intakeintakeAngleDrive.getEncPosition());
     	
     	System.out.println("done");
-    	new Setpoints(1);
+    	//new Setpoints("shoot");
     	Robot.intake.hasZeroed = true;
     	
     }

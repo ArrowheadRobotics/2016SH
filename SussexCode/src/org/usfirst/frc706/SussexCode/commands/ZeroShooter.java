@@ -41,6 +41,7 @@ public class ZeroShooter extends Command {
     	//RobotMap.shootershooterAngleDrive.set(0);
     	System.out.println("done");
     	Robot.shooter.hasZeroed = true;
+    	//new Setpoints("shoot");
     }
 
     // Called when another command which requires one or more of the same

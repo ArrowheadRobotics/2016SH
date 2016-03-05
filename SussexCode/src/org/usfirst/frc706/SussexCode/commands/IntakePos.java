@@ -7,7 +7,6 @@ import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
 public class IntakePos extends Command {
-	public boolean wait = false;
     public IntakePos() {
     	requires(Robot.intake);
     }
@@ -23,10 +22,6 @@ public class IntakePos extends Command {
     	if(Robot.intake.hasZeroed) {
     		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
-    		if (Robot.intakeWait) {
-    			Timer.delay(5);
-    			Robot.intakeWait = false;
-    		}
     	}
     	//System.out.println("Intake Pos: " + RobotMap.intakeintakeAngleDrive.getEncPosition());
     }

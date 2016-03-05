@@ -45,9 +45,9 @@ public class OI {
     	
     	start.whenPressed(new ZeroIntake());
     	start.whenPressed(new ZeroShooter());
-    	b.whenPressed(new Setpoints(1));
-    	a.whenPressed(new Setpoints(2));
-    	y.whenPressed(new Setpoints(3));
+    	a.whenPressed(new Setpoints("intake"));
+    	b.whenPressed(new Setpoints("hold"));
+    	y.whenPressed(new Setpoints("shoot"));
     	
     	hookButton = new JoystickButton(leftJoy, 2);
     	
