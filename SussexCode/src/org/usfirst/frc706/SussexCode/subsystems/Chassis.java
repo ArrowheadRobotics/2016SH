@@ -25,10 +25,10 @@ public class Chassis extends Subsystem {
     }
     
     public void move(double leftSpeed, double rightSpeed) {
-    	leftDriveOne.set(leftSpeed);
-    	leftDriveTwo.set(leftSpeed);
-    	rightDriveOne.set(rightSpeed);
-    	rightDriveTwo.set(rightSpeed);
+    	leftDriveOne.set(-leftSpeed);
+    	leftDriveTwo.set(-leftSpeed);
+    	rightDriveOne.set(-rightSpeed);
+    	rightDriveTwo.set(-rightSpeed);
     }
     
 }
