@@ -110,7 +110,7 @@ public class AutonomousCommand extends Command {
 			break;
 		case 1:
 			new GearLow();
-			new Setpoints("shoot");
+			new Setpoints("hold");
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(2);
 			while(detectCollision()==false || System.currentTimeMillis()<startTime+5000){
@@ -121,7 +121,7 @@ public class AutonomousCommand extends Command {
 			Timer.delay(500);
 			Robot.chassis.move(0.6, 0.6);
 			Timer.delay(500);
-			new Setpoints("shoot");
+			new Setpoints("hold");
 			Timer.delay(3.0);
 			Robot.chassis.move(0, 0);
 			new GearHigh();
@@ -136,6 +136,7 @@ public class AutonomousCommand extends Command {
 			done = true;
 			break;
     	default:
+    		new Setpoints("hold");
     		Robot.chassis.move(0.6, 0.6);
     		Timer.delay(7.0);
     		Robot.chassis.move(0, 0);
