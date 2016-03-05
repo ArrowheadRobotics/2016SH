@@ -21,9 +21,9 @@ public class Constants {
 		public static final double D_INTAKE = 20;
 		
 		//Shooter
-		public static final double P_SHOOTER = 1.2;
-		public static final double I_SHOOTER = 0.0004;
-		public static final double D_SHOOTER = 500;
+		public static final double P_SHOOTER = 2;
+		public static final double I_SHOOTER = 0.0001;
+		public static final double D_SHOOTER = 20;
 	}
 	
 	public class Controls {
