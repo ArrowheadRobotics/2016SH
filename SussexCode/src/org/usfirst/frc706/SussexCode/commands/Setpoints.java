@@ -100,13 +100,13 @@ public class Setpoints extends Command {
         if(delayWhat.equals("intake"))
         {
         	//System.out.println(RobotMap.shootershooterAngleDrive.getEncPosition());
-        	if(RobotMap.shootershooterAngleDrive.getEncPosition() < -4250)
+        	if(RobotMap.shootershooterAngleDrive.getEncPosition() < -4450)
         		return false;
         }
         else if(delayWhat.equals("shooter"))
         {
         	//System.out.println(RobotMap.intakeintakeAngleDrive.getEncPosition());
-        	if(RobotMap.intakeintakeAngleDrive.getEncPosition() < -1100)
+        	if(RobotMap.intakeintakeAngleDrive.getEncPosition() < -1600)
         		return false;
         }
         return true;

@@ -25,7 +25,7 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
-    	shooterAngleDrive.setPID(P, I, D, 0, 0, 12, 0);
+    	shooterAngleDrive.setPID(P, I, D, 0, 0, 36, 0);
     	/*while(shooterAngleDrive.getCloseLoopRampRate()!=1)
     	{
     		shooterAngleDrive.setCloseLoopRampRate(1);
