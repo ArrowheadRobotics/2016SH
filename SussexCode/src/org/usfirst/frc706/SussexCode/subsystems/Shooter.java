@@ -26,7 +26,8 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
     	shooterAngleDrive.setPID(P, I, D);
-    	shooterAngleDrive.setVoltageRampRate(.01);
+    	
+    	
     	position = Constants.Setpoints.SHOOTER_TOP;
     	hasZeroed = false;
     }

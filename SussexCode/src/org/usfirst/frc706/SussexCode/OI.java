@@ -44,7 +44,7 @@ public class OI {
 
     	
     	start.whenPressed(new ZeroIntake());
-    	//start.whenPressed(new ZeroShooter());
+    	start.whenPressed(new ZeroShooter());
     	b.whenPressed(new Setpoints(1));
     	a.whenPressed(new Setpoints(2));
     	y.whenPressed(new Setpoints(3));

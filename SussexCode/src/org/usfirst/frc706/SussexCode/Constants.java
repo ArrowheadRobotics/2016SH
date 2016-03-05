@@ -9,7 +9,7 @@ public class Constants {
 		public static final int INTAKE_LOWER = -150;
 		
 		//Shooter
-		public static final int SHOOTER_DOWN = -6800;
+		public static final int SHOOTER_DOWN = -7200;
 		public static final int SHOOTER_HOLD = -4000;
 		public static final int SHOOTER_TOP = 0;
 	}
@@ -21,9 +21,9 @@ public class Constants {
 		public static final double D_INTAKE = 20;
 		
 		//Shooter
-		public static final double P_SHOOTER = 0.5;
+		public static final double P_SHOOTER = 1;
 		public static final double I_SHOOTER = 0;
-		public static final double D_SHOOTER = 100;
+		public static final double D_SHOOTER = 500;
 	}
 	
 	public class Controls {

@@ -1,5 +1,6 @@
 package org.usfirst.frc706.SussexCode.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc706.SussexCode.Robot;
@@ -22,8 +23,14 @@ public class ShooterPos extends Command {
     	if(Robot.shooter.hasZeroed) {
     		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
+    		if (Robot.shooterWait) {
+    			System.out.println("wait");
+    			Timer.delay(5);
+    			System.out.println("wait aft");
+    			Robot.shooterWait = false;
+    		}
     	}
-    	//System.out.println("Shooter Pos: " + RobotMap.shootershooterAngleDrive.getEncPosition());
+    	System.out.println("Shooter Pos: " + RobotMap.shootershooterAngleDrive.getEncPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

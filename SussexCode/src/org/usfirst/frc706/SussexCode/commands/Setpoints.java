@@ -30,11 +30,13 @@ public class Setpoints extends Command {
     		Robot.intake.changePos(Constants.Setpoints.INTAKE_LOWER);
     	}
     	//MODE 2 = HOLD SETPOINT
+    	
     	else if(mode == 2) {
     		if(current == 3) {
+    			Robot.shooterWait = true;
     			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
-    			Timer.delay(1);
     			Robot.intake.changePos(Constants.Setpoints.INTAKE_VERTICAL);
+    			
     		}
     		else {
     			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
@@ -45,10 +47,10 @@ public class Setpoints extends Command {
     	else if(mode == 3) {
     		if(current == 2) {
     			Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
-    			Timer.delay(1);
-    			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
+     			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
     		}
     		else {
+    			Robot.intakeWait = true;
     			Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
     			Robot.shooter.changePos(Constants.Setpoints.SHOOTER_DOWN);
     		}
