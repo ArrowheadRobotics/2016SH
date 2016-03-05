@@ -24,14 +24,15 @@ public class Intake extends Subsystem {
     	intakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	intakeAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	intakeAngleDrive.setPID(P, I, D);
+    	position = Constants.Setpoints.INTAKE_LOWER;
     	hasZeroed = false;
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	// setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new IntakeStick());
-    	setDefaultCommand(new SetIntakePos());
+    	setDefaultCommand(new IntakeStick());
+    	//setDefaultCommand(new IntakePos());
     }
 
 	public void changePos(int pos) {

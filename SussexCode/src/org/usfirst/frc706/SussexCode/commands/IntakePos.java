@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
-public class SetIntakePos extends Command {
+public class IntakePos extends Command {
 	
-    public SetIntakePos() {
+    public IntakePos() {
     	requires(Robot.intake);
     }
 
@@ -23,6 +23,7 @@ public class SetIntakePos extends Command {
     		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
     	}
+    	System.out.println("Intake Pos: " + RobotMap.intakeintakeAngleDrive.getEncPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

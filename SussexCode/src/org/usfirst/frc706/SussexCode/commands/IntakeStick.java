@@ -22,6 +22,7 @@ public class IntakeStick extends Command {
     	else {
     		RobotMap.intakeintakeAngleDrive.set(0);
     	}
+    	System.out.println("Intake pos: " + Robot.intake.intakeAngleDrive.getEncPosition());
     }
 
     protected boolean isFinished() {

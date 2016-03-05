@@ -23,7 +23,7 @@ public class ShooterPos extends Command {
     		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
     	}
-    	System.out.println(RobotMap.shootershooterAngleDrive.getEncPosition());
+    	System.out.println("Shooter Pos: " + RobotMap.shootershooterAngleDrive.getEncPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
