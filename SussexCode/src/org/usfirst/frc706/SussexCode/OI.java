@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
+	//emergency check for extend hook before winch engage
+	public boolean wasExtended = false;
+	
 	//Joysticks
 	public Joystick leftJoy;
 	public Joystick rightJoy;
@@ -24,7 +27,11 @@ public class OI {
 	//Joystick Buttons
 	public JoystickButton rightTrigger;
 	public JoystickButton leftTrigger;
-	public JoystickButton hookButton;
+	public JoystickButton hookButton1;
+	public JoystickButton hookButton2;
+	public JoystickButton winchButton1;
+	public JoystickButton winchButton2;
+	public JoystickButton enableControl;
 	
     public OI() {
 
@@ -49,7 +56,13 @@ public class OI {
     	b.whenPressed(new Setpoints("hold"));
     	y.whenPressed(new Setpoints("shoot"));
     	
-    	hookButton = new JoystickButton(leftJoy, 2);
+    	hookButton1 = new JoystickButton(leftJoy, 2);
+    	hookButton2 = new JoystickButton(rightJoy, 2);
+    	winchButton1 = new JoystickButton(leftJoy, 4);
+    	winchButton2 = new JoystickButton(rightJoy, 5);
+    	
+    	enableControl = new JoystickButton(leftJoy, 8);
+    	
     	
     	rb.whileHeld(new IntakeDrive(1));
     	lb.whileHeld(new IntakeDrive(-1));
@@ -60,7 +73,11 @@ public class OI {
     	leftTrigger.whenReleased(new GearHigh());
     	rightTrigger.whenPressed(new Shoot());
     	
-    	hookButton.whenPressed(new ExtendHook());
+    	hookButton1.whenPressed(new ExtendHook());
+    	
+    	enableControl.whenPressed(new Control());
+    	
+    	winchButton1.whenPressed(new EngageWinch());
     	
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
@@ -72,11 +89,11 @@ public class OI {
 
     //Returns Speed of Left Joystick
     public double getLeftSpeed() {
-    	return Robot.oi.leftJoy.getY();
+    	return 1*Robot.oi.leftJoy.getY();
     }
     //Returns Speed of Right Joystick
     public double getRightSpeed() {
-    	return Robot.oi.rightJoy.getY();
+    	return 1*Robot.oi.rightJoy.getY();
     }
     
 }

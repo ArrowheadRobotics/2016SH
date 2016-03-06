@@ -11,11 +11,13 @@
 
 package org.usfirst.frc706.SussexCode.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
+import org.usfirst.frc706.SussexCode.RobotMap;
 
 /**
  *
@@ -33,14 +35,18 @@ public class Climb extends Command {
     }
 
     protected void execute() {
+    	//put shooter arm in place
+    	RobotMap.shootershooterAngleDrive.set(-1000);
+    	Timer.delay(1);
+    	//extend hook
+    	RobotMap.hookSol.set(DoubleSolenoid.Value.kForward);
+    	Timer.delay(1);
+    	//lower arm slightly
+    	RobotMap.shootershooterAngleDrive.set(-1100);
+    	Timer.delay(0.5);
+    	//retract hook
+    	RobotMap.hookSol.set(DoubleSolenoid.Value.kReverse);
     	
-    	//put arm in place
-    	
-    	Timer.delay(0.5);
-    	new ExtendHook();
-    	Timer.delay(0.5);
-    	//lower arm
-    	Timer.delay(0.5);
     	new EngageWinch();
     	Timer.delay(0.5);
     	Robot.chassis.move(driveSpeed, driveSpeed);

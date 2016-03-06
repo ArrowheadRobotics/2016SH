@@ -18,6 +18,7 @@ public class Shooter extends Subsystem {
     private final double D = Constants.PID.D_SHOOTER;
     
     public int position;
+    public boolean stopPositionSet = false;
     public boolean hasZeroed;
 
     public Shooter(){

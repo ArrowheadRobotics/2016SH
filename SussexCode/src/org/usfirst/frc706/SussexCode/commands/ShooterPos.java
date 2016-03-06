@@ -20,11 +20,13 @@ public class ShooterPos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.shooter.hasZeroed) {
-    		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    		RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
-    		
-    		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity() * 0.001);
+    	if(!Robot.shooter.stopPositionSet)
+    	{
+    		if(Robot.shooter.hasZeroed) {
+    			RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
+    			RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
+    			RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity() * 0.001);
+    		}
     	}
     	//System.out.println("Shooter Pos: " + RobotMap.shootershooterAngleDrive.getEncPosition());
     }
