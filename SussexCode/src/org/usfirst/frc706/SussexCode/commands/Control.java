@@ -42,7 +42,7 @@ public class Control extends Command {
     	RobotMap.shootershooterAngleDrive.enable();
     	RobotMap.shootershooterAngleDrive.enableBrakeMode(true);
     	Robot.shooter.stopPositionSet = false;
-    	Robot.winch.PTO.set(DoubleSolenoid.Value.kForward);
+    	RobotMap.winchPTO.set(DoubleSolenoid.Value.kForward);
     	Robot.chassis.climb = false;
     }
 

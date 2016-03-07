@@ -29,12 +29,12 @@ public class EngageWinch extends Command {
     		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     		RobotMap.shootershooterAngleDrive.set(0);
     		
-    		Robot.winch.PTO.set(DoubleSolenoid.Value.kReverse);
+    		RobotMap.winchPTO.set(DoubleSolenoid.Value.kReverse);
     		Timer.delay(0.5);
     		Robot.chassis.move(-0.8, -0.8);
     		Timer.delay(2.5);
     		Robot.chassis.move(0, 0);
-    		Robot.winch.PTO.set(DoubleSolenoid.Value.kForward);
+    		RobotMap.winchPTO.set(DoubleSolenoid.Value.kForward);
     		 
     		bothWinch = false;
     	}
