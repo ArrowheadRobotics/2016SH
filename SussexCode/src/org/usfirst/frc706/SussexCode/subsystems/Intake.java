@@ -1,6 +1,7 @@
 package org.usfirst.frc706.SussexCode.subsystems;
 
 import org.usfirst.frc706.SussexCode.Constants;
+import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 import org.usfirst.frc706.SussexCode.commands.*;
 
@@ -34,11 +35,14 @@ public class Intake extends Subsystem {
         // Set the default command for a subsystem here.
     	// setDefaultCommand(new MySpecialCommand());
     	//setDefaultCommand(new IntakeStick());
-    	setDefaultCommand(new IntakePos());
+    	
+    	//setDefaultCommand(new IntakePos());
     }
 
 	public void changePos(int pos) {
 		position = pos;
+		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
+		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
 	}
 }
 

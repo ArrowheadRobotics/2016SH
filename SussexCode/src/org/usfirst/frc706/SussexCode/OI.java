@@ -50,8 +50,7 @@ public class OI {
     	start = new JoystickButton(xbox, Constants.Controls.START);
 
     	
-    	start.whenPressed(new ZeroIntake());
-    	start.whenPressed(new ZeroShooter());
+    	start.whenPressed(new Zero());
     	a.whenPressed(new Setpoints("intake"));
     	b.whenPressed(new Setpoints("hold"));
     	y.whenPressed(new Setpoints("shoot"));

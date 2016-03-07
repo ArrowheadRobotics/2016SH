@@ -3,16 +3,25 @@ package org.usfirst.frc706.SussexCode.commands;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
-public class ZeroShooter extends Command {
+public class Zero extends Command {
 
-    public ZeroShooter() {
+	public static boolean doneZeroing = false;
+	
+    public Zero() {
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.intake.hasZeroed = false;
+    	RobotMap.intakeintakeAngleDrive.enableControl();
+    	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
+    	RobotMap.intakeintakeAngleDrive.set(.4);
+    	
     	Robot.shooter.hasZeroed = false;
     	RobotMap.shootershooterAngleDrive.enableControl();
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
@@ -21,27 +30,33 @@ public class ZeroShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	RobotMap.intakeintakeAngleDrive.set(.4);
     	RobotMap.shootershooterAngleDrive.set(-.4);
-    	System.out.println("Down");
+    	
+    	if(RobotMap.intakeintakeAngleDrive.isFwdLimitSwitchClosed() && RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed()) {
+    		doneZeroing = true;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed();
+        return doneZeroing;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	System.out.println("end");
+    	RobotMap.intakeintakeAngleDrive.set(0);
+    	RobotMap.intakeintakeAngleDrive.setPosition(0);
+    	System.out.println("set Intake Enc" + RobotMap.intakeintakeAngleDrive.getEncPosition());
+    	
     	RobotMap.shootershooterAngleDrive.set(0);
-    	System.out.println("set");
     	RobotMap.shootershooterAngleDrive.setPosition(0);
-    	System.out.println("setEnc");
-    	//RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    	//RobotMap.shootershooterAngleDrive.set(0);
-    	System.out.println("done");
+    	System.out.println("set Shooter Enc" + RobotMap.shootershooterAngleDrive.getEncPosition());
+    	
     	Robot.shooter.hasZeroed = true;
-    	//new Setpoints("shoot");
+    	Robot.intake.hasZeroed = true;
+    	
+    	doneZeroing = false;
     }
 
     // Called when another command which requires one or more of the same

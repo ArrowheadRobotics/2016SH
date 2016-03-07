@@ -133,11 +133,6 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-    	System.out.println("zero deez");
-    	new ZeroIntake();
-    	new ZeroShooter();
-    	Timer.delay(5);
-    	System.out.println("done timering");
     	
         if (autonomousCommand != null) autonomousCommand.start();
     }

@@ -47,7 +47,7 @@ public class AutonomousCommand extends CommandGroup {
 	private double encStartPos = RobotMap.rightDriveEnc.getValue();
 	private double encCurrentPos;
 	private double encLastPos;
-	private double distance = 900;
+	private double distance = 6900;
 	private double trueCount = 0;
 	private long zeroShooterStartTime;
 	private long zeroIntakeStartTime;
@@ -74,19 +74,21 @@ public class AutonomousCommand extends CommandGroup {
     	defensePosition = (int) Robot.dpos.getSelected();
     	robotPosition = (int) Robot.rpos.getSelected();
     	RobotMap.shootershooterAngleDrive.enableBrakeMode(true);
-    	zeroBoth();
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    	//zeroBoth();
+    	zeroIntake();
+    	zeroShooter();
     	if(robotPosition == defensePosition){
 	    	crossDefense();
     	}
     }
 
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -128,12 +130,33 @@ public class AutonomousCommand extends CommandGroup {
 				Robot.chassis.move(-0.4, -0.4);
 				detectDistanceTravelled();
 			}
+			Robot.chassis.move(0, 0);
+			Timer.delay(1);
+			System.out.println("setting intakePos");
+			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
+			trueCount = 0;
+			distance = 	1000;
+			Timer.delay(1);
+			startTime=System.currentTimeMillis();
+			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000) {
+				Robot.chassis.move(-0.8, -0.8);
+				detectDistanceTravelled();
+			}
+			
+			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
+			System.out.println("done with one loop");
+			distance = 12000;
+			startTime=System.currentTimeMillis();
+			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000)
+			{
+				Robot.chassis.move(-0.4, -0.4);
+				detectDistanceTravelled();
+				System.out.println("in the loop");
+				RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
+			}
+			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
 			System.out.println("done whileing");
 			Robot.chassis.move(0, 0);
-			Robot.intake.position = Constants.Setpoints.INTAKE_LOWER;
-			//Timer.delay(.5);
-			//Robot.chassis.move(0.4, 0.4);
-			//Timer.delay(.5);
 			//RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		//RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
 			//Timer.delay(3.0);
@@ -197,6 +220,7 @@ public class AutonomousCommand extends CommandGroup {
     	default:
     		break;
     	}
+    	RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     }
     
     
@@ -229,21 +253,27 @@ public class AutonomousCommand extends CommandGroup {
     }
     
     protected void zeroShooter() {
-    	zeroShooterInit();
     	zeroShooterStartTime=System.currentTimeMillis();
-    	while(zeroShooterIsFin()==false&&System.currentTimeMillis()<zeroShooterStartTime+10000) {
-    		zeroShooterEx();
+    	while(RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed()==false&&System.currentTimeMillis()<zeroShooterStartTime+10000) {
+    		RobotMap.shootershooterAngleDrive.enableControl();
+    		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
+    		RobotMap.shootershooterAngleDrive.set(-0.3);
     	}
-    	zeroShooterEnd();
+    	RobotMap.shootershooterAngleDrive.set(0);
+    	RobotMap.shootershooterAngleDrive.setPosition(0);
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     }
     
     protected void zeroIntake() {
-    	zeroIntakeInit();
     	zeroIntakeStartTime=System.currentTimeMillis();
-    	while(zeroIntakeIsFin()==false&&System.currentTimeMillis()<zeroIntakeStartTime+10000) {
-    		zeroIntakeEx();
+    	while(RobotMap.intakeintakeAngleDrive.isFwdLimitSwitchClosed()==false && System.currentTimeMillis()<zeroIntakeStartTime+10000) {
+    		RobotMap.intakeintakeAngleDrive.enableControl();
+    		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
+    		RobotMap.intakeintakeAngleDrive.set(0.4);
     	}
-    	zeroIntakeEnd();
+    	RobotMap.intakeintakeAngleDrive.set(0);
+    	RobotMap.intakeintakeAngleDrive.setPosition(0);
+    	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     }
     
     protected void zeroBoth() {

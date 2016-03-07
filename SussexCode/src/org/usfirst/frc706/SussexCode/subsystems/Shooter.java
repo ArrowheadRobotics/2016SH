@@ -1,6 +1,7 @@
 package org.usfirst.frc706.SussexCode.subsystems;
 
 import org.usfirst.frc706.SussexCode.Constants;
+import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 import org.usfirst.frc706.SussexCode.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -39,6 +40,8 @@ public class Shooter extends Subsystem {
     
     public void changePos(int target) {
     	position = target;
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
+		RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
     }
     
     public void initDefaultCommand() {
@@ -46,7 +49,7 @@ public class Shooter extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     	//setDefaultCommand(new ShooterStick());
     	
-    	setDefaultCommand(new ShooterPos());
+    	//setDefaultCommand(new ShooterPos());
     	
    }
 
