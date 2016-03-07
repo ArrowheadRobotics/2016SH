@@ -1,4 +1,6 @@
- package org.usfirst.frc706.SussexCode;
+package org.usfirst.frc706.SussexCode;
+
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Constants {
 	
@@ -44,7 +46,11 @@ public class Constants {
 		//Joystick Buttons
 		public static final int RIGHT_JOY_TRIGGER = 1;
 		public static final int LEFT_JOY_TRIGGER = 1;
-		
+		public static final int HOOK_BUTTON_ONE = 2;
+		public static final int HOOK_BUTTON_TWO = 2;
+		public static final int WINCH_BUTTON_ONE = 4;
+		public static final int WINCH_BUTTON_TWO = 5;
+		public static final int CONTROL_BUTTON = 8;
 	}
 	
 	public class Talons {

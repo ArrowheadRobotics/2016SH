@@ -15,8 +15,10 @@ public class Intake extends Subsystem {
 	public boolean hasZeroed;
 	public boolean stopPositionSet = false;
 	public String shooterArmFromLocation = "";
+	
     public final CANTalon intakeDrive = RobotMap.intakeintakeDrive;
     public final CANTalon intakeAngleDrive = RobotMap.intakeintakeAngleDrive;
+    
     public final double P = Constants.PID.P_INTAKE;
     public final double I = Constants.PID.I_INTAKE;
     public final double D = Constants.PID.D_INTAKE;
@@ -27,22 +29,19 @@ public class Intake extends Subsystem {
     	intakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	intakeAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	intakeAngleDrive.setPID(P, I, D);
+    	
     	position = Constants.Setpoints.INTAKE_LOWER;
     	hasZeroed = false;
     }
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-    	// setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new IntakeStick());
-    	
     	//setDefaultCommand(new IntakePos());
     }
 
 	public void changePos(int pos) {
 		position = pos;
-		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-		RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
+		intakeAngleDrive.changeControlMode(TalonControlMode.Position);
+		intakeAngleDrive.set(Robot.intake.position);
 	}
 }
 

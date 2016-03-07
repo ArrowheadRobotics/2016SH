@@ -4,18 +4,19 @@ import org.usfirst.frc706.SussexCode.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
-	//emergency check for extend hook before winch engage
-	public boolean wasExtended = false;
+	public boolean wasExtended = false; //Emergency check for extend hook before winch engage
 	
-	//Joysticks
+	/*
+	 *	START DECLARATIONS
+	 */
+	//Joystick Declarations
 	public Joystick leftJoy;
 	public Joystick rightJoy;
 	public Joystick xbox;
 	
-	//Xbox Buttons
+	//Xbox Button Declaration
 	public JoystickButton a;
 	public JoystickButton b;
 	public JoystickButton x;
@@ -24,7 +25,7 @@ public class OI {
 	public JoystickButton lb;
 	public JoystickButton start;
 	
-	//Joystick Buttons
+	//Joystick Button Declarations
 	public JoystickButton rightTrigger;
 	public JoystickButton leftTrigger;
 	public JoystickButton hookButton1;
@@ -32,67 +33,75 @@ public class OI {
 	public JoystickButton winchButton1;
 	public JoystickButton winchButton2;
 	public JoystickButton enableControl;
+	/*
+	 *	END DECLARATIONS 
+	 */
 	
     public OI() {
-
+    	/*
+    	 *	START INITIALIZATIONS
+    	 */
+    	//Joystick Initializations 
     	leftJoy = new Joystick(Constants.Controls.LEFT_JOY_PORT);
     	rightJoy = new Joystick(Constants.Controls.RIGHT_JOY_PORT);
     	xbox = new Joystick(Constants.Controls.XBOX_PORT);
     	
+    	//Xbox Button Initializations 
     	a = new JoystickButton(xbox, Constants.Controls.A_BUTT);
     	b = new JoystickButton(xbox, Constants.Controls.B_BUTT);
     	x = new JoystickButton(xbox, Constants.Controls.X_BUTT);
     	y = new JoystickButton(xbox, Constants.Controls.Y_BUTT);
     	lb = new JoystickButton(xbox, Constants.Controls.LB);
     	rb = new JoystickButton(xbox, Constants.Controls.RB);
+    	start = new JoystickButton(xbox, Constants.Controls.START);
+    	
+    	//Joystick Button Initializations 
     	rightTrigger = new JoystickButton(rightJoy, Constants.Controls.RIGHT_JOY_TRIGGER);
     	leftTrigger = new JoystickButton(leftJoy, Constants.Controls.LEFT_JOY_TRIGGER);
-    	start = new JoystickButton(xbox, Constants.Controls.START);
-
+    	hookButton1 = new JoystickButton(leftJoy, Constants.Controls.HOOK_BUTTON_ONE);
+    	hookButton2 = new JoystickButton(rightJoy, Constants.Controls.HOOK_BUTTON_TWO);
+    	winchButton1 = new JoystickButton(leftJoy, Constants.Controls.WINCH_BUTTON_ONE);
+    	winchButton2 = new JoystickButton(rightJoy, Constants.Controls.WINCH_BUTTON_TWO);
+    	enableControl = new JoystickButton(leftJoy, Constants.Controls.CONTROL_BUTTON);
+    	/*
+    	 *	END INITIALIZATIONS
+    	 */
     	
-    	start.whenPressed(new Zero());
-    	a.whenPressed(new Setpoints("intake"));
-    	b.whenPressed(new Setpoints("hold"));
-    	y.whenPressed(new Setpoints("shoot"));
+    	/*
+    	 *	START COMMAND CALLS
+    	 */
+    	start.whenPressed(new Zero()); //Zeroes encoders on shooter and intake arms
+    	a.whenPressed(new Setpoints("intake")); //Intake Setpoint
+    	b.whenPressed(new Setpoints("hold")); //Hold Setpoint
+    	y.whenPressed(new Setpoints("shoot")); //Shoot Setpoint
     	
-    	hookButton1 = new JoystickButton(leftJoy, 2);
-    	hookButton2 = new JoystickButton(rightJoy, 2);
-    	winchButton1 = new JoystickButton(leftJoy, 4);
-    	winchButton2 = new JoystickButton(rightJoy, 5);
+    	rb.whileHeld(new IntakeDrive(1)); //Driving Intake
+    	lb.whileHeld(new IntakeDrive(-1)); //Purging Intake
+    	rb.whenReleased(new IntakeStop()); //Stop Intake on release
+    	lb.whenReleased(new IntakeStop()); //Stop Intake on release
     	
-    	enableControl = new JoystickButton(leftJoy, 8);
+    	leftTrigger.whenPressed(new GearLow()); //Shift to low gear when held
+    	leftTrigger.whenReleased(new GearHigh()); //Reverts to high gear on release
     	
+    	rightTrigger.whenPressed(new Shoot()); //Shoots boulder
     	
-    	rb.whileHeld(new IntakeDrive(1));
-    	lb.whileHeld(new IntakeDrive(-1));
-    	rb.whenReleased(new IntakeStop());
-    	lb.whenReleased(new IntakeStop());
+    	hookButton1.whenPressed(new ExtendHook()); //Extends and retracts hook for climbing
+    	winchButton1.whenPressed(new EngageWinch()); //Engages winch
     	
-    	leftTrigger.whenPressed(new GearLow());
-    	leftTrigger.whenReleased(new GearHigh());
-    	rightTrigger.whenPressed(new Shoot());
+    	enableControl.whenPressed(new Control()); //Enables Control after Climbing
+    	/*
+    	 *	END COMMAND CALLS
+    	 */
     	
-    	hookButton1.whenPressed(new ExtendHook());
-    	
-    	enableControl.whenPressed(new Control());
-    	
-    	winchButton1.whenPressed(new EngageWinch());
-    	
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("Drive", new Drive());
-        SmartDashboard.putData("BLANK", new BLANK());
-        SmartDashboard.putData("Shoot", new Shoot());
-
     }
 
     //Returns Speed of Left Joystick
     public double getLeftSpeed() {
-    	return 1*Robot.oi.leftJoy.getY();
+    	return Robot.oi.leftJoy.getY();
     }
     //Returns Speed of Right Joystick
     public double getRightSpeed() {
-    	return 1*Robot.oi.rightJoy.getY();
+    	return Robot.oi.rightJoy.getY();
     }
     
 }
