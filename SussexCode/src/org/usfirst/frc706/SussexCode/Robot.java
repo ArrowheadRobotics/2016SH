@@ -72,17 +72,17 @@ public class Robot extends IterativeRobot {
         dpos = new SendableChooser();
         def = new SendableChooser();
         
-        dpos.addObject("one", 0);
-        dpos.addObject("two", 1);
-        dpos.addObject("three", 2);
-        dpos.addObject("four", 3);
-        dpos.addObject("five", 4);
+        dpos.addObject("Defense one", 0);
+        dpos.addObject("Defense two", 1);
+        dpos.addObject("Defense three", 2);
+        dpos.addObject("Defense four", 3);
+        dpos.addObject("Defense five", 4);
         
-        rpos.addObject("one", 0);
-        rpos.addObject("two", 1);
-        rpos.addObject("three", 2);
-        rpos.addObject("four", 3);
-        rpos.addObject("five", 4);
+        rpos.addObject("Robot one", 0);
+        rpos.addObject("Robot two", 1);
+        rpos.addObject("Robot three", 2);
+        rpos.addObject("Robot four", 3);
+        rpos.addObject("Robot five", 4);
         
         def.addObject("Portcullis", 0);
         def.addObject("Cheval de Frise", 1);

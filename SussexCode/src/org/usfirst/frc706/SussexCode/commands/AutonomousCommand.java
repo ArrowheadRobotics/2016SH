@@ -40,12 +40,9 @@ public class AutonomousCommand extends CommandGroup {
 	private double lastAccelX;
 	private double lastAccelZ;
 	private double accelThreshold = 2;
-	private boolean done = false;
 	private long startTime;
-	private double defaultSpeed = -0.6;
 	private double encCurrentPos;
 	private double encLastPos;
-	private double distance = 6900;
 	private double trueCount = 0;
 	private long zeroShooterStartTime;
 	private long zeroIntakeStartTime;
@@ -60,7 +57,6 @@ public class AutonomousCommand extends CommandGroup {
     	defensePosition = (int) Robot.dpos.getSelected();
     	robotPosition = (int) Robot.rpos.getSelected();
     	RobotMap.shootershooterAngleDrive.enableBrakeMode(true);
-    	//zeroBoth();
     	zeroIntake();
     	zeroShooter();
     	if(robotPosition == defensePosition){
@@ -94,123 +90,67 @@ public class AutonomousCommand extends CommandGroup {
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.chassisGearSol.set(Value.kReverse);
-    		startTime=System.currentTimeMillis();
-    		distance = 6900;
-			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000) {
-				Robot.chassis.move(-0.4, -0.4);
-				detectDistanceTravelled();
-			}
-			Robot.chassis.move(0, 0);
+    		drive(6900, -0.4);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
-			startTime=System.currentTimeMillis();
-    		distance = 5000;
-			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000) {
-				Robot.chassis.move(-0.4, -0.4);
-				detectDistanceTravelled();
-			}
-			Robot.chassis.move(0, 0);
+			drive(5000, -0.4);
 			RobotMap.chassisGearSol.set(Value.kForward);
-			done = true;
 			break;
 		case 1: //Crosses the french fries
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.chassisGearSol.set(Value.kReverse);
-    		startTime = System.currentTimeMillis();
-    		distance = 6900;
-			while(trueCount<distance && System.currentTimeMillis()<startTime+5000){
-				Robot.chassis.move(-0.4, -0.4);
-				detectDistanceTravelled();
-			}
-			Robot.chassis.move(0, 0);
+    		drive(6900, -0.4);
 			Timer.delay(1);
-			System.out.println("setting intakePos");
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
-			trueCount = 0;
-			distance = 	1000;
 			Timer.delay(1);
-			startTime=System.currentTimeMillis();
-			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000) {
-				Robot.chassis.move(-0.8, -0.8);
-				detectDistanceTravelled();
-			}
-			
+			drive(1000, -0.8);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-			System.out.println("done with one loop");
-			distance = 12000;
-			startTime=System.currentTimeMillis();
-			while(trueCount<distance&&System.currentTimeMillis()<startTime+5000)
-			{
-				Robot.chassis.move(-0.4, -0.4);
-				detectDistanceTravelled();
-				System.out.println("in the loop");
-				RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-			}
+			drive(12000,-0.4);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-			System.out.println("done whileing");
 			Robot.chassis.move(0, 0);
 			RobotMap.chassisGearSol.set(Value.kForward);
-			done = true;
 			break;
 		case 2: //Crosses the moat
 			System.out.println("moat");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		Robot.chassis.move(defaultSpeed, defaultSpeed);
-    		Timer.delay(4.0);
-    		Robot.chassis.move(0, 0);
-    		done = true;
+    		drive(15000,1);
     		break;
 		case 3: //Crosses the ramparts
 			System.out.println("ramparts");
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		Robot.chassis.move(defaultSpeed, defaultSpeed);
-    		Timer.delay(2.0);
-    		Robot.chassis.move(0, 0);
-    		done = true;
+    		drive(20000,-0.8);
     		break;
 		case 4: //Crosses sally port
 			Robot.chassis.move(0, 0);
-			done = true;
 			break;
 		case 5: //Crosses draw bridge
 			Robot.chassis.move(0, 0);
-			done = true;
 			break;
 		case 6: //Crosses the rock wall
 			System.out.println("rockwall");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		Robot.chassis.move(defaultSpeed, defaultSpeed);
-    		Timer.delay(2.5);
-    		Robot.chassis.move(0, 0);
-    		done = true;
+    		drive(15000,-0.6);
     		break;
 		case 7: //Crosses the rough terrain
 			System.out.println("rough terrain");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		Robot.chassis.move(defaultSpeed, defaultSpeed);
-    		Timer.delay(2.0);
-    		Robot.chassis.move(0, 0);
-    		done = true;
+    		drive(15000,-0.6);
     		break;
 		case 8: //Goes under the low bar
 			System.out.println("lowbar");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_DOWN);
-    		Robot.chassis.move(defaultSpeed,defaultSpeed);
-    		Timer.delay(2.0);
-    		Robot.chassis.move(0, 0);
-    		done = true;
+    		drive(15000,-0.6);
     		break;
     	default:
     		break;
     	}
     	RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     }
-    
     
     protected boolean detectCollision() { //Function to check if robot collides with anything
     	currentAccelX = Robot.nav.getWorldLinearAccelX();
@@ -264,72 +204,13 @@ public class AutonomousCommand extends CommandGroup {
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     }
     
-    protected void zeroBoth() {
-    	zeroIntakeInit();
-    	zeroShooterInit();
-    	zeroIntakeStartTime=System.currentTimeMillis();
-    	zeroShooterStartTime=System.currentTimeMillis();
-    	while((zeroShooterIsFin()||zeroIntakeIsFin())==false&&System.currentTimeMillis()<zeroIntakeStartTime+10000) {
-    		zeroIntakeEx();
-    		zeroShooterEx();
-    	}
+    protected void drive(int distance, double speed){
+    	startTime=System.currentTimeMillis();
+    	trueCount = 0;
+    	while(trueCount<distance && System.currentTimeMillis()<startTime+5000){
+			Robot.chassis.move(speed, speed);
+			detectDistanceTravelled();
+		}
+		Robot.chassis.move(0, 0);
     }
-    
-    
-    protected void zeroShooterInit() {
-    	Robot.shooter.hasZeroed = false;
-    	RobotMap.shootershooterAngleDrive.enableControl();
-    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.shootershooterAngleDrive.set(-.4);
-    }
-    
-    protected void zeroShooterEx() {
-    	RobotMap.shootershooterAngleDrive.set(-.4);
-    	System.out.println("Down");
-    }
-    
-    protected boolean zeroShooterIsFin() {
-        return RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed();
-    }
-    
-    protected void zeroShooterEnd() {
-    	System.out.println("end");
-    	RobotMap.shootershooterAngleDrive.set(0);
-    	System.out.println("set");
-    	RobotMap.shootershooterAngleDrive.setPosition(0);
-    	System.out.println("setEnc");
-    	//RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
-    	//RobotMap.shootershooterAngleDrive.set(0);
-    	System.out.println("done");
-    	Robot.shooter.hasZeroed = true;
-    	//new Setpoints("shoot");
-    }
-    
-    protected void zeroIntakeInit() {
-    	Robot.intake.hasZeroed = false;
-    	RobotMap.intakeintakeAngleDrive.enableControl();
-    	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.intakeintakeAngleDrive.set(.4);
-    }
-    
-    protected void zeroIntakeEx() {
-    	RobotMap.intakeintakeAngleDrive.set(.4);
-    	System.out.println("Down");    	
-    }
-    
-    protected boolean zeroIntakeIsFin() {
-        return RobotMap.intakeintakeAngleDrive.isFwdLimitSwitchClosed();    	
-    }
-    
-    protected void zeroIntakeEnd() {
-    	System.out.println("end");
-    	RobotMap.intakeintakeAngleDrive.set(0);
-    	System.out.println("set");
-    	RobotMap.intakeintakeAngleDrive.setPosition(0);
-    	System.out.println("setEnc" + RobotMap.intakeintakeAngleDrive.getEncPosition());
-    	
-    	System.out.println("done");
-    	//new Setpoints("shoot");
-    	Robot.intake.hasZeroed = true;    	
-    }    
 }
