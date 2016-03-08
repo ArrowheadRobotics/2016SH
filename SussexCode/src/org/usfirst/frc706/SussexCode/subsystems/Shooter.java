@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
-	
     public final CANTalon shooterAngleDrive = RobotMap.shootershooterAngleDrive;
     public final DoubleSolenoid shooterTriggerSol = RobotMap.shooterTriggerSol;
+    
     private final double P = Constants.PID.P_SHOOTER;
     private final double I = Constants.PID.I_SHOOTER;
     private final double D = Constants.PID.D_SHOOTER;
@@ -28,31 +28,19 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
     	shooterAngleDrive.setPID(P, I, D, 0, 0, 36, 0);
-    	/*while(shooterAngleDrive.getCloseLoopRampRate()!=1)
-    	{
-    		shooterAngleDrive.setCloseLoopRampRate(1);
-    		System.out.println("attempting to set ramp rate");
-    	}*/
-    	
-    	position = Constants.Setpoints.SHOOTER_TOP;
-    	hasZeroed = false;
+
+    	position = Constants.Setpoints.SHOOTER_TOP; //Sets the initial state of arm (post-zeroing)
+    	hasZeroed = false; //Initially hasn't zeroed
     }
     
+    public void initDefaultCommand() {    	
+    }
+    
+    //Changes the target position of the shooter arm
     public void changePos(int target) {
     	position = target;
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
 		RobotMap.shootershooterAngleDrive.set(Robot.shooter.position);
     }
-    
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    	//setDefaultCommand(new ShooterStick());
-    	
-    	//setDefaultCommand(new ShooterPos());
-    	
-   }
-
-   
 }
 

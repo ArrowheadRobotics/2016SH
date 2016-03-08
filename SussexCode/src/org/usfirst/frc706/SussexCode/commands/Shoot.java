@@ -13,6 +13,9 @@ public class Shoot extends Command {
     	requires(Robot.shooter);
     }
 
+	protected void initialize() {
+	}
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.shooter.shooterTriggerSol.set(Value.kReverse);
@@ -39,10 +42,4 @@ public class Shoot extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
-	@Override
-	protected void initialize() {
-		// TODO Auto-generated method stub
-		
-	}
 }

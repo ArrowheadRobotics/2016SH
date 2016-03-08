@@ -8,22 +8,22 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chassis extends Subsystem {
-	public boolean climb = false;
     private final CANTalon rightDriveOne = RobotMap.chassisrightDriveOne;
     private final CANTalon rightDriveTwo = RobotMap.chassisrightDriveTwo;
     private final CANTalon leftDriveOne = RobotMap.chassisleftDriveOne;
     private final CANTalon leftDriveTwo = RobotMap.chassisleftDriveTwo;
+	
+    public boolean climb = false;
     
     public Chassis() {
-    	RobotMap.chassisGearSol.set(Value.kForward);
+    	RobotMap.chassisGearSol.set(Value.kForward); //Initialize into high gear
     }
 
     public void initDefaultCommand() {
     	setDefaultCommand(new Drive());
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
     }
     
+    //Sets motor speeds
     public void move(double leftSpeed, double rightSpeed) {
     	leftDriveOne.set(leftSpeed);
     	leftDriveTwo.set(leftSpeed);

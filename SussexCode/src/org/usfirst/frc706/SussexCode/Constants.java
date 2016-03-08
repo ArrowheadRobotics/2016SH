@@ -1,4 +1,4 @@
-package org.usfirst.frc706.SussexCode;
+ package org.usfirst.frc706.SussexCode;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
