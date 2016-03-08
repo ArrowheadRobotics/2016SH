@@ -1,6 +1,5 @@
 package org.usfirst.frc706.SussexCode.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,7 +29,7 @@ public class ExtendHook extends Command {
     	if(both) {
     		System.out.println("extending hook");
     		
-    		//locks intake to PID-controlled Veritcal
+    		//locks intake to PID-controlled Vertical
     		Robot.intake.position = Constants.Setpoints.INTAKE_VERTICAL;
     	
     		//Put shooter arm in above hanging bar

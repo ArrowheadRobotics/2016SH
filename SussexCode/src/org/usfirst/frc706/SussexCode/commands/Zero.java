@@ -11,6 +11,7 @@ import org.usfirst.frc706.SussexCode.RobotMap;
 public class Zero extends Command {
 
 	public static boolean doneZeroing = false;
+	private double zeroSpeed = Constants.Speeds.ZERO_SPEED;
 	
     public Zero() {
     }
@@ -20,18 +21,18 @@ public class Zero extends Command {
     	Robot.intake.hasZeroed = false;
     	RobotMap.intakeintakeAngleDrive.enableControl();
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.intakeintakeAngleDrive.set(.4);
+    	RobotMap.intakeintakeAngleDrive.set(zeroSpeed);
     	
     	Robot.shooter.hasZeroed = false;
     	RobotMap.shootershooterAngleDrive.enableControl();
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.shootershooterAngleDrive.set(-.4);
+    	RobotMap.shootershooterAngleDrive.set(-1 * zeroSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.intakeintakeAngleDrive.set(.4);
-    	RobotMap.shootershooterAngleDrive.set(-.4);
+    	RobotMap.intakeintakeAngleDrive.set(zeroSpeed);
+    	RobotMap.shootershooterAngleDrive.set(-1 * zeroSpeed);
     	
     	if(RobotMap.intakeintakeAngleDrive.isFwdLimitSwitchClosed() && RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed()) {
     		doneZeroing = true;

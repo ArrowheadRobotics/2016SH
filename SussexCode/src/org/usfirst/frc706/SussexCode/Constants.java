@@ -1,6 +1,4 @@
- package org.usfirst.frc706.SussexCode;
-
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+package org.usfirst.frc706.SussexCode;
 
 public class Constants {
 	
@@ -93,10 +91,12 @@ public class Constants {
 		//Intake
 		public static final double INTAKE_ANGLE_SPEED = 0.4;
 		public static final double INTAKE_DRIVE_SPEED = 1;
-		public static final double INTAKE_LIFT_SPEED = 1;
 		
 		//Winch
 		public static final double WINCH_DRIVE_SPEED = 1;
+		
+		//Other & Shared
+		public static final double ZERO_SPEED = 0.4;
 	}
 	
 	public class Encoders {
@@ -105,4 +105,8 @@ public class Constants {
 		public static final int RIGHT_ENC_PORT = 1;
 	}
 	
+	public class Deadzones {
+		//Drive 
+		public static final double DRIVE_DEADZONE = 0.2;
+	}
 }

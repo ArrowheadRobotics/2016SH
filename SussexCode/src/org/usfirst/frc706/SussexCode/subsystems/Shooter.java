@@ -3,7 +3,6 @@ package org.usfirst.frc706.SussexCode.subsystems;
 import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
-import org.usfirst.frc706.SussexCode.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
