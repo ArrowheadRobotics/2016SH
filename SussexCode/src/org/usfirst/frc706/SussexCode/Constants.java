@@ -109,4 +109,26 @@ public class Constants {
 		//Drive 
 		public static final double DRIVE_DEADZONE = 0.2;
 	}
+	
+	public class Autonomous {
+		//Distances
+		public static final int TO_PORTCULLIS = 6000;
+		public static final int LIFT_PORTCULLIS = 4000;
+		public static final int OVER_PORTCULLIS = 5000;
+		public static final int TO_CHEVAL = 6900;
+		public static final int ON_CHEVAL = 1000;
+		public static final int OVER_CHEVAL = 12000;
+		public static final int MOAT_DISTANCE = 15000;
+		public static final int RAMPART_DISTANCE = 20000;
+		public static final int ROCKWALL_DISTANCE = 15000;
+		public static final int TERRAIN_DISTANCE = 15000;
+		public static final int LOWBAR_DISTANCE = 15000;
+		
+		//Speeds
+		public static final double DEFAULT_SPEED = -0.4;
+		public static final double CHEVAL_SPEED = -0.8;
+		public static final double MOAT_SPEED = -1;
+		public static final double RAMPART_SPEED = -0.8;
+		public static final double ROCKWALL_SPEED = -0.6;
+	}
 }

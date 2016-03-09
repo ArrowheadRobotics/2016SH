@@ -46,10 +46,25 @@ public class AutonomousCommand extends CommandGroup {
 	private double trueCount = 0;
 	private long zeroShooterStartTime;
 	private long zeroIntakeStartTime;
+	private double P = Constants.PID.P_SHOOTER;
+	private double I = Constants.PID.I_SHOOTER;
+	private double D = Constants.PID.D_SHOOTER;
 	private int toPortcullis = Constants.Autonomous.TO_PORTCULLIS;
 	private int liftPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
 	private int overPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
-	private double portcullisSpeed = Constants.Autonomous.PORTCULLIS_SPEED;
+	private double defaultSpeed = Constants.Autonomous.DEFAULT_SPEED;
+	private int toCheval = Constants.Autonomous.TO_CHEVAL;
+	private int onCheval = Constants.Autonomous.ON_CHEVAL;
+	private int overCheval = Constants.Autonomous.OVER_CHEVAL;
+	private double chevalSpeed = Constants.Autonomous.CHEVAL_SPEED;
+	private int overMoat = Constants.Autonomous.MOAT_DISTANCE;
+	private double moatSpeed = Constants.Autonomous.MOAT_SPEED;
+	private int overRamparts = Constants.Autonomous.RAMPART_DISTANCE;
+	private double rampartSpeed = Constants.Autonomous.RAMPART_SPEED;
+	private int overRockwall = Constants.Autonomous.ROCKWALL_DISTANCE;
+	private double rockwallSpeed = Constants.Autonomous.ROCKWALL_SPEED;
+	private int overTerrain = Constants.Autonomous.TERRAIN_DISTANCE;
+	private int underBar = Constants.Autonomous.LOWBAR_DISTANCE;
 
     public AutonomousCommand() {
     	
@@ -88,32 +103,32 @@ public class AutonomousCommand extends CommandGroup {
     
     protected void crossDefense(){
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	switch(defense){
 		case 0: //Crosses portcullis
 			setShooter(Constants.Setpoints.SHOOTER_DOWN);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
-			drive(toPortcullis,portcullisSpeed);
+			drive(toPortcullis,defaultSpeed);
 			Timer.delay(2);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
 			Timer.delay(2);
-    		drive(liftPortcullis, portcullisSpeed);
+    		drive(liftPortcullis, defaultSpeed);
     		Timer.delay(5);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
 			Timer.delay(0.25);
-			drive(overPortcullis, portcullisSpeed);
+			drive(overPortcullis, defaultSpeed);
 			break;
 		case 1: //Crosses the french fries
+			addSequential(new Drive());
 			setShooter(Constants.Setpoints.SHOOTER_HOLD);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		RobotMap.chassisGearSol.set(Value.kReverse);
-    		drive(6900, -0.4);
+    		drive(toCheval, defaultSpeed);
 			Timer.delay(1);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
 			Timer.delay(1);
-			drive(1000, -0.8);
+			drive(onCheval,chevalSpeed);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-			drive(12000,-0.4);
+			drive(overCheval,defaultSpeed);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
 			Robot.chassis.move(0, 0);
 			RobotMap.chassisGearSol.set(Value.kForward);
@@ -122,37 +137,39 @@ public class AutonomousCommand extends CommandGroup {
 			System.out.println("moat");
 			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		drive(15000,1);
+    		drive(overMoat,moatSpeed);
     		break;
 		case 3: //Crosses the ramparts
 			System.out.println("ramparts");
 			setShooter(Constants.Setpoints.SHOOTER_HOLD);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		drive(20000,-0.8);
+    		drive(overRamparts,rampartSpeed);
     		break;
 		case 4: //Crosses sally port
+			System.out.println("not doing anything");
 			Robot.chassis.move(0, 0);
 			break;
 		case 5: //Crosses draw bridge
+			System.out.println("not doing anything");
 			Robot.chassis.move(0, 0);
 			break;
 		case 6: //Crosses the rock wall
 			System.out.println("rockwall");
 			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		drive(15000,-0.6);
+    		drive(overRockwall,rockwallSpeed);
     		break;
 		case 7: //Crosses the rough terrain
 			System.out.println("rough terrain");
 			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		drive(15000,-0.6);
+    		drive(overTerrain,defaultSpeed);
     		break;
 		case 8: //Goes under the low bar
 			System.out.println("lowbar");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
     		setShooter(Constants.Setpoints.SHOOTER_DOWN);
-    		drive(15000,-0.6);
+    		drive(underBar,defaultSpeed);
     		break;
     	default:
     		break;
@@ -174,8 +191,6 @@ public class AutonomousCommand extends CommandGroup {
     	} else {
     		return false;
     	}
-    	
-    	
     }
     
     protected void detectDistanceTravelled() { //Calculates real distance from encoder values
@@ -185,7 +200,7 @@ public class AutonomousCommand extends CommandGroup {
     	}
     	if(encCurrentPos>encLastPos+3500) {
     		trueCount+=4096-encCurrentPos;
-    	} 	
+    	}
     	encLastPos=encCurrentPos;
     }
     
@@ -215,7 +230,7 @@ public class AutonomousCommand extends CommandGroup {
     
     protected void drive(int distance, double speed){
     	RobotMap.intakeintakeDrive.set(0);
-    	startTime=System.currentTimeMillis();
+    	startTime = System.currentTimeMillis();
     	trueCount = 0;
     	while(trueCount<distance && System.currentTimeMillis()<startTime+5000){
 			Robot.chassis.move(speed, speed);
@@ -223,11 +238,13 @@ public class AutonomousCommand extends CommandGroup {
 		}
 		Robot.chassis.move(0, 0);
     }
-    
+
     protected void setShooter(int setpoint){
     	Timer.delay(2);
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	RobotMap.shootershooterAngleDrive.set(setpoint);
     	RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity()*-0.8);
+    	System.out.println("Shoot angle Speed: " + RobotMap.shootershooterAngleDrive.getEncVelocity()*-0.8);
     	Timer.delay(1.5);
     	RobotMap.intakeintakeDrive.set(0);
     	Timer.delay(2);

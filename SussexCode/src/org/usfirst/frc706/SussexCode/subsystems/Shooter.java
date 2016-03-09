@@ -26,7 +26,9 @@ public class Shooter extends Subsystem {
     	shooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	shooterAngleDrive.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	shooterAngleDrive.reverseOutput(true);
-    	shooterAngleDrive.setPID(P, I, D, 0, 0, 36, 0);
+    	shooterAngleDrive.setP(P);
+    	shooterAngleDrive.setI(I);
+    	shooterAngleDrive.setD(D);
 
     	position = Constants.Setpoints.SHOOTER_TOP; //Sets the initial state of arm (post-zeroing)
     	hasZeroed = false; //Initially hasn't zeroed
