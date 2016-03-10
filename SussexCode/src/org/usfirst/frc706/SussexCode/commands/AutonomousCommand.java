@@ -46,6 +46,10 @@ public class AutonomousCommand extends CommandGroup {
 	private double trueCount = 0;
 	private long zeroShooterStartTime;
 	private long zeroIntakeStartTime;
+	private int toPortcullis = Constants.Autonomous.TO_PORTCULLIS;
+	private int liftPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
+	private int overPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
+	private double portcullisSpeed = Constants.Autonomous.PORTCULLIS_SPEED;
 
     public AutonomousCommand() {
     	
@@ -87,17 +91,21 @@ public class AutonomousCommand extends CommandGroup {
 		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	switch(defense){
 		case 0: //Crosses portcullis
-			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		RobotMap.chassisGearSol.set(Value.kReverse);
-    		drive(6900, -0.4);
+			setShooter(Constants.Setpoints.SHOOTER_DOWN);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
-			drive(5000, -0.4);
-			RobotMap.chassisGearSol.set(Value.kForward);
+			drive(toPortcullis,portcullisSpeed);
+			Timer.delay(2);
+			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
+			Timer.delay(2);
+    		drive(liftPortcullis, portcullisSpeed);
+    		Timer.delay(5);
+			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
+			Timer.delay(0.25);
+			drive(overPortcullis, portcullisSpeed);
 			break;
 		case 1: //Crosses the french fries
+			setShooter(Constants.Setpoints.SHOOTER_HOLD);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.chassisGearSol.set(Value.kReverse);
     		drive(6900, -0.4);
 			Timer.delay(1);
@@ -112,14 +120,14 @@ public class AutonomousCommand extends CommandGroup {
 			break;
 		case 2: //Crosses the moat
 			System.out.println("moat");
+			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		drive(15000,1);
     		break;
 		case 3: //Crosses the ramparts
 			System.out.println("ramparts");
+			setShooter(Constants.Setpoints.SHOOTER_HOLD);
 			RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		drive(20000,-0.8);
     		break;
 		case 4: //Crosses sally port
@@ -130,25 +138,26 @@ public class AutonomousCommand extends CommandGroup {
 			break;
 		case 6: //Crosses the rock wall
 			System.out.println("rockwall");
+			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		drive(15000,-0.6);
     		break;
 		case 7: //Crosses the rough terrain
 			System.out.println("rough terrain");
+			setShooter(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		drive(15000,-0.6);
     		break;
 		case 8: //Goes under the low bar
 			System.out.println("lowbar");
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_DOWN);
+    		setShooter(Constants.Setpoints.SHOOTER_DOWN);
     		drive(15000,-0.6);
     		break;
     	default:
     		break;
     	}
+    	setShooter(Constants.Setpoints.SHOOTER_HOLD);
     	RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     }
     
@@ -205,6 +214,7 @@ public class AutonomousCommand extends CommandGroup {
     }
     
     protected void drive(int distance, double speed){
+    	RobotMap.intakeintakeDrive.set(0);
     	startTime=System.currentTimeMillis();
     	trueCount = 0;
     	while(trueCount<distance && System.currentTimeMillis()<startTime+5000){
@@ -212,5 +222,14 @@ public class AutonomousCommand extends CommandGroup {
 			detectDistanceTravelled();
 		}
 		Robot.chassis.move(0, 0);
+    }
+    
+    protected void setShooter(int setpoint){
+    	Timer.delay(2);
+    	RobotMap.shootershooterAngleDrive.set(setpoint);
+    	RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity()*-0.8);
+    	Timer.delay(1.5);
+    	RobotMap.intakeintakeDrive.set(0);
+    	Timer.delay(2);
     }
 }
