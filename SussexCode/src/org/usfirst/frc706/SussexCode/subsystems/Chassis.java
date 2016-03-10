@@ -1,6 +1,5 @@
 package org.usfirst.frc706.SussexCode.subsystems;
 
-import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 import org.usfirst.frc706.SussexCode.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;

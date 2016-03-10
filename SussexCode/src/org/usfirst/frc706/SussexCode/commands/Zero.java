@@ -1,7 +1,6 @@
 package org.usfirst.frc706.SussexCode.commands;
 
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc706.SussexCode.Constants;
@@ -12,6 +11,7 @@ public class Zero extends Command {
 
 	public static boolean doneZeroing = false;
 	private double zeroSpeed = Constants.Speeds.ZERO_SPEED;
+	private long startTime;
 	
     public Zero() {
     }
@@ -27,6 +27,8 @@ public class Zero extends Command {
     	RobotMap.shootershooterAngleDrive.enableControl();
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     	RobotMap.shootershooterAngleDrive.set(-1 * zeroSpeed);
+    	
+    	startTime = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,6 +37,9 @@ public class Zero extends Command {
     	RobotMap.shootershooterAngleDrive.set(-1 * zeroSpeed);
     	
     	if(RobotMap.intakeintakeAngleDrive.isFwdLimitSwitchClosed() && RobotMap.shootershooterAngleDrive.isRevLimitSwitchClosed()) {
+    		doneZeroing = true;
+    	}
+    	if(System.currentTimeMillis() > startTime + 2500) {
     		doneZeroing = true;
     	}
     }
