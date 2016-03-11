@@ -43,15 +43,15 @@ public class AutonomousSetpoints extends Command {
     protected void execute() {
     	switch(shooterPos){
     	case "top":
-    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.SHOOTER_TOP);
+    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_TOP);
     		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	case "hold":
-    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
+    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
     		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	case "down":
-    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.SHOOTER_DOWN);
+    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_DOWN);
     		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	}
@@ -59,13 +59,13 @@ public class AutonomousSetpoints extends Command {
     	switch(intakePos){
     	case "vertical":
     		Timer.delay(2);
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
+    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		break;
     	case "horizontal":
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
+    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
     		break;
     	case "lower":
-    		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
+    		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
     		break;
     	}
     }
