@@ -17,6 +17,7 @@ public class Control extends Command {
     	Robot.shooter.stopPositionSet = false;
     	RobotMap.winchPTO.set(DoubleSolenoid.Value.kForward);
     	Robot.chassis.climb = false;
+    	Robot.chassis.climbDrive = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
