@@ -19,7 +19,7 @@ public class Drive extends Command {
 
     protected void execute() {
     	if(Robot.chassis.climbDrive) {
-    		if(Robot.oi.getLeftSpeed() > 0 && Robot.oi.getRightSpeed() > 0) {
+    		if((Robot.oi.getLeftSpeed() + Robot.oi.getRightSpeed())/2 > 0) {
     			speed = (Robot.oi.getLeftSpeed() + Robot.oi.getRightSpeed())/2;
     		}
     		else{
