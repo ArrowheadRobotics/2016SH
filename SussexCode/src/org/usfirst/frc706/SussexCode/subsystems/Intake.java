@@ -3,6 +3,8 @@ package org.usfirst.frc706.SussexCode.subsystems;
 import org.usfirst.frc706.SussexCode.Constants;
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
+import org.usfirst.frc706.SussexCode.commands.IntakePos;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -33,7 +35,7 @@ public class Intake extends Subsystem {
     }
 
     public void initDefaultCommand() {
-    	//setDefaultCommand(new IntakePos());
+    	setDefaultCommand(new IntakePos());
     }
 
     //Changes the target position of the arm

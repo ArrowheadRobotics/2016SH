@@ -57,6 +57,7 @@ public class Setpoints extends Command {
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
     				System.out.println("activating shooter arm");
     				delayWhat = "intake";
+    				RobotMap.intakeintakeDrive.set(0.5);
     				break;
     			case "hold":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
@@ -74,15 +75,16 @@ public class Setpoints extends Command {
     		{
     			case "intake":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
-    				delayWhat = "intake";
+    				Robot.shooter.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
+    				RobotMap.intakeintakeDrive.set(0.5);
     				break;
     			case "hold":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
-    				Robot.intake.changePos(Constants.Setpoints.INTAKE_LOWER);
+    				Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
     				break;
     			case "shoot":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
-    				Robot.intake.changePos(Constants.Setpoints.INTAKE_LOWER);
+    				Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
     				break;
     		}
     		break;
@@ -122,7 +124,7 @@ public class Setpoints extends Command {
     	else if(delayWhat.equals("intake"))
     	{
     		if(goToLocation.equals("shoot"))
-    			Robot.intake.changePos(Constants.Setpoints.INTAKE_LOWER);
+    			Robot.intake.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
     		else
     			Robot.intake.changePos(Constants.Setpoints.INTAKE_VERTICAL);
     	}
