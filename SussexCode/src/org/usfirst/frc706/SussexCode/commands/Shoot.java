@@ -17,15 +17,17 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.shooterTriggerSol.set(Value.kReverse);
-    	Timer.delay(.25);
-    	RobotMap.shooterOneSol.set(Value.kReverse);
-    	RobotMap.shooterTwoSol.set(Value.kReverse);
-    	Timer.delay(.5);
-    	RobotMap.shooterTriggerSol.set(Value.kForward);
-    	Timer.delay(.15);
-    	RobotMap.shooterOneSol.set(Value.kForward);
-    	RobotMap.shooterTwoSol.set(Value.kForward);
+    	if(Robot.shooter.shooterAngleDrive.getEncPosition() < -2000) {
+    		Robot.shooter.shooterTriggerSol.set(Value.kReverse);
+    		Timer.delay(.25);
+    		RobotMap.shooterOneSol.set(Value.kReverse);
+    		RobotMap.shooterTwoSol.set(Value.kReverse);
+    		Timer.delay(.5);
+    		RobotMap.shooterTriggerSol.set(Value.kForward);
+    		Timer.delay(.15);
+    		RobotMap.shooterOneSol.set(Value.kForward);
+    		RobotMap.shooterTwoSol.set(Value.kForward);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

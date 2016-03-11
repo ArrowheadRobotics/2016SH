@@ -57,7 +57,7 @@ public class Zero extends Command {
     	
     	RobotMap.shootershooterAngleDrive.set(0);
     	RobotMap.shootershooterAngleDrive.setPosition(0);
-    	System.out.println("set Shooter Enc" + RobotMap.shootershooterAngleDrive.getEncPosition());
+    	System.out.println("set Shooter Enc" + RobotMap.shootershooterAngleDrive.getEncPosition()); 
     	
     	Robot.shooter.hasZeroed = true;
     	Robot.intake.hasZeroed = true;

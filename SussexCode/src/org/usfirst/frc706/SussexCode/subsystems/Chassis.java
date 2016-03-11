@@ -13,9 +13,12 @@ public class Chassis extends Subsystem {
     private final CANTalon leftDriveTwo = RobotMap.chassisleftDriveTwo;
 	
     public boolean climb = false;
+    public boolean climbDrive = false;
     
     public Chassis() {
     	RobotMap.chassisGearSol.set(Value.kForward); //Initialize into high gear
+    	climb = false;
+    	climbDrive = false; 
     }
 
     public void initDefaultCommand() {
@@ -28,6 +31,13 @@ public class Chassis extends Subsystem {
     	leftDriveTwo.set(leftSpeed);
     	rightDriveOne.set(rightSpeed);
     	rightDriveTwo.set(rightSpeed);
+    }
+    
+    public void move(double speed) {
+    	leftDriveOne.set(speed);
+    	leftDriveTwo.set(speed);
+    	rightDriveOne.set(speed);
+    	rightDriveTwo.set(speed);
     }
     
 }

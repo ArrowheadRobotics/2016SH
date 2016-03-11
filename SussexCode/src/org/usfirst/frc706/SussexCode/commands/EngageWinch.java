@@ -19,6 +19,7 @@ public class EngageWinch extends Command {
     		bothWinch = true;
     	}
     	Robot.chassis.climb = true;
+    	Robot.chassis.climbDrive = true;
     }
 
     protected void execute() {
