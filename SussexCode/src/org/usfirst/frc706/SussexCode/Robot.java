@@ -115,8 +115,6 @@ public class Robot extends IterativeRobot {
         RobotMap.shooterTwoSol.set(DoubleSolenoid.Value.kForward);
         
         SmartDashboard.putData("Defense", def);
-        SmartDashboard.putData("Robot Position", rpos);
-        SmartDashboard.putData("Defense Position", dpos);
     }
    
 
