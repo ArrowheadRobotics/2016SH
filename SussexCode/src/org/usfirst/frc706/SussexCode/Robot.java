@@ -38,6 +38,9 @@ import org.usfirst.frc706.SussexCode.subsystems.*;
 public class Robot extends IterativeRobot {
 	
 	public static SendableChooser def;
+	public static SendableChooser rpos;
+	public static SendableChooser dpos;
+
     Command autonomousCommand;
     Command NewAutonomous;
 
@@ -67,7 +70,21 @@ public class Robot extends IterativeRobot {
         server.setQuality(50);
         server.startAutomaticCapture("cam0");
         
+        rpos = new SendableChooser();
+        dpos = new SendableChooser();
         def = new SendableChooser();
+        
+        dpos.addObject("Defense one", 0);
+        dpos.addObject("Defense two", 1);
+        dpos.addObject("Defense three", 2);
+        dpos.addObject("Defense four", 3);
+        dpos.addObject("Defense five", 4);
+        
+        rpos.addObject("Robot one", 0);
+        rpos.addObject("Robot two", 1);
+        rpos.addObject("Robot three", 2);
+        rpos.addObject("Robot four", 3);
+        rpos.addObject("Robot five", 4);
         
         def.addObject("Portcullis", 0);
         def.addObject("Cheval de Frise", 1);

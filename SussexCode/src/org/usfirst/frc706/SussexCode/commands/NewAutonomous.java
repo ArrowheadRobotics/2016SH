@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NewAutonomous extends CommandGroup {
 	
 	private int defense;
+	private int robotPosition;
+	private int defensePosition;
 	private int toPortcullis = Constants.Autonomous.TO_PORTCULLIS;
 	private int liftPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
 	private int overPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
@@ -31,6 +33,8 @@ public class NewAutonomous extends CommandGroup {
 
     public NewAutonomous() {
     	defense = (int) Robot.def.getSelected();
+    	defensePosition = (int) Robot.dpos.getSelected();
+    	robotPosition = (int) Robot.rpos.getSelected();
     	
     	addSequential(new Zero());
     	addSequential(new GearLow());
