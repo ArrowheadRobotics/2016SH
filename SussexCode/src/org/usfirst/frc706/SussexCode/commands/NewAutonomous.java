@@ -32,6 +32,7 @@ public class NewAutonomous extends CommandGroup {
 	private int underBar = Constants.Autonomous.LOWBAR_DISTANCE;
 
     public NewAutonomous() {
+    	
     	defense = (int) Robot.def.getSelected();
     	defensePosition = (int) Robot.dpos.getSelected();
     	robotPosition = (int) Robot.rpos.getSelected();
@@ -40,17 +41,15 @@ public class NewAutonomous extends CommandGroup {
     	addSequential(new GearLow());
     	
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
+    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
+    	
     	switch(defense){
 		case 0: //Crosses portcullis
 			addSequential(new AutonomousSetpoints("horizontal","down"));
 			addSequential(new AutonomousDrive(toPortcullis,defaultSpeed));
-			Timer.delay(2);
 			addSequential(new AutonomousSetpoints("lower","down"));
-			Timer.delay(2);
     		addSequential(new AutonomousDrive(liftPortcullis, defaultSpeed));
-    		Timer.delay(5);
     		addSequential(new AutonomousSetpoints("horizontal","down"));
-			Timer.delay(0.25);
 			addSequential(new AutonomousDrive(overPortcullis, defaultSpeed));
 			break;
 		case 1: //Crosses the french fries
