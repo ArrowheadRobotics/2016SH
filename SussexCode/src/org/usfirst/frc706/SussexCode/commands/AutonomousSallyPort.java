@@ -2,13 +2,13 @@ package org.usfirst.frc706.SussexCode.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class AutonomousDrawBridge extends CommandGroup {
-    public AutonomousDrawBridge() {    	
+public class AutonomousSallyPort extends CommandGroup {
+    public AutonomousSallyPort() {    	
     	addSequential(new Zero());
     	addSequential(new GearLow());
     	
-    	addSequential(new AutonomousSetpoints("vertical","hold"));
-		addSequential(new AutonomousDrive(6000,-0.4));
+    	addSequential(new AutonomousSetpoints("vertical", "hold"));
+		addSequential(new AutonomousDrive(6000, -0.4));
     	
     	addSequential(new GearHigh());
     }
