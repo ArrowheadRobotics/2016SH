@@ -28,17 +28,19 @@ public class NewAutonomous extends CommandGroup {
 	private double rockwallSpeed = Constants.Autonomous.ROCKWALL_SPEED;
 	private int overTerrain = Constants.Autonomous.TERRAIN_DISTANCE;
 	private int underBar = Constants.Autonomous.LOWBAR_DISTANCE;
+	private int newDefense = 1;
 
     public NewAutonomous() {
     	
-    	addSequential(new AutonStartup());
+    	//addSequential(new AutonStartup());
     	
     	addSequential(new Zero());
     	addSequential(new GearLow());
     	
-    	
-    	switch(Robot.chassis.defense){
+    	System.out.println("New Defense:" + Robot.chassis.defense);
+    	switch(newDefense){
 		case 0: //Crosses portcullis
+			System.out.println("portcullis");
 			addSequential(new AutonomousSetpoints("horizontal","down"));
 			addSequential(new AutonomousDrive(toPortcullis,defaultSpeed));
 			addSequential(new AutonomousSetpoints("lower","down"));
@@ -47,6 +49,7 @@ public class NewAutonomous extends CommandGroup {
 			addSequential(new AutonomousDrive(overPortcullis, defaultSpeed));
 			break;
 		case 1: //Crosses the french fries
+			System.out.println("fries");
 			addSequential(new AutonomousSetpoints("vertical","hold"));
     		addSequential(new AutonomousDrive(toCheval, defaultSpeed));
 			addSequential(new AutonomousSetpoints("lower","hold"));
@@ -56,7 +59,7 @@ public class NewAutonomous extends CommandGroup {
 			break;
 		case 2: //Crosses the moat
 			System.out.println("moat");
-			addSequential(new AutonomousSetpoints("vertical","hold"));
+			addSequential(new Setpoints("hold"));
     		addSequential(new AutonomousDrive(overMoat,moatSpeed));
     		break;
 		case 3: //Crosses the ramparts

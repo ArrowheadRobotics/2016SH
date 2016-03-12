@@ -156,6 +156,7 @@ public class Robot extends IterativeRobot {
     	//if (autonomousCommand != null) autonomousCommand.cancel();
     	if (NewAutonomous != null) NewAutonomous.cancel();
     	Robot.intake.tele = true;
+    	Robot.chassis.tele = true;
     }
 
     /**

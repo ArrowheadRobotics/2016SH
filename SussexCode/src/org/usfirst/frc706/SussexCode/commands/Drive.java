@@ -18,6 +18,7 @@ public class Drive extends Command {
     }
 
     protected void execute() {
+    	if(Robot.chassis.tele) {
     	if(Robot.chassis.climbDrive) {
     		if(Robot.oi.getLeftSpeed() > deadZone || Robot.oi.getLeftSpeed() < -1 * deadZone) {
     			if(Robot.oi.getRightSpeed() > deadZone || Robot.oi.getRightSpeed() < -1 * deadZone) {
@@ -50,6 +51,7 @@ public class Drive extends Command {
     		else {
     			Robot.chassis.move(0, 0);
     		}
+    	}
     	}
     }
 

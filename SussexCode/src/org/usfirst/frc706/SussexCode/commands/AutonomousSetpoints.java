@@ -41,15 +41,15 @@ public class AutonomousSetpoints extends Command {
     	switch(shooterPos){
     	case "top":
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_TOP);
-    		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
+    		//RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	case "hold":
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_HOLD);
-    		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
+    		//RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	case "down":
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_DOWN);
-    		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
+    		//RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity());
     		break;
     	}
     	

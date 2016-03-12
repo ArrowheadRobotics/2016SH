@@ -15,7 +15,7 @@ public class Chassis extends Subsystem {
     public int defense;
 	public int robotPosition;
 	public int defensePosition;
-    
+	public boolean tele = false;
     public boolean climb = false;
     public boolean climbDrive = false;
     public boolean shooting = false;
@@ -32,14 +32,14 @@ public class Chassis extends Subsystem {
     
     //Sets motor speeds
     public void move(double leftSpeed, double rightSpeed) {
-    	leftDriveOne.set(leftSpeed);
-    	leftDriveTwo.set(leftSpeed);
-    	rightDriveOne.set(rightSpeed);
+   		leftDriveOne.set(leftSpeed);
+   		leftDriveTwo.set(leftSpeed);
+   		rightDriveOne.set(rightSpeed);
     	rightDriveTwo.set(rightSpeed);
     }
     
     public void move(double speed) {
-    	leftDriveOne.set(speed);
+   		leftDriveOne.set(speed);
     	leftDriveTwo.set(speed);
     	rightDriveOne.set(speed);
     	rightDriveTwo.set(speed);

@@ -30,6 +30,7 @@ public class AutonomousDrive extends Command {
     public AutonomousDrive(int distance, double speed) {
     	driveSpeed = speed;
     	driveDistance = distance;
+    	trueCount = 0;
      }
 
     // Called just before this Command runs the first time

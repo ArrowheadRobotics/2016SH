@@ -43,6 +43,7 @@ public class AutonStartup extends Command {
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	
     	Robot.chassis.defense = (int) Robot.def.getSelected();
+    	System.out.println("Defense: " + Robot.chassis.defense);
     	Robot.chassis.defensePosition = (int) Robot.dpos.getSelected();
     	Robot.chassis.robotPosition = (int) Robot.rpos.getSelected();
     }
