@@ -22,16 +22,19 @@ public class Shoot extends Command {
 	protected void initialize() {
 		//Robot.chassis.shooting = true;
 		startTime = System.currentTimeMillis(); 
+		System.out.println(startTime);
 		triggerRelease = false;
 		pistonRetract = false;
 		triggerEngage = false;
 		engagePistons = false;
 		doneShooting = false;
+		System.out.println("INIT SHOOT");
 	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.shooter.shooterAngleDrive.getEncPosition() > -2000) {
+    		System.out.println("PROPER POS");
     		/*Robot.shooter.shooterTriggerSol.set(Value.kReverse); //TRIGGER RELEASE
     		Timer.delay(.25);
     		RobotMap.shooterOneSol.set(Value.kReverse); //RETRACTION
@@ -44,25 +47,27 @@ public class Shoot extends Command {
     		if(!triggerRelease) {
     			Robot.shooter.shooterTriggerSol.set(Value.kReverse);
     			triggerRelease = true;
+    			System.out.println("Release Trigger " + System.currentTimeMillis());
     		}
-    		if(System.currentTimeMillis() + 250 > startTime && !pistonRetract) {
+    		if((System.currentTimeMillis() > startTime + 250) && !pistonRetract) {
     			RobotMap.shooterOneSol.set(Value.kReverse); 
         		RobotMap.shooterTwoSol.set(Value.kReverse);
     			pistonRetract = true;
+    			System.out.println("Retract Pistons " + System.currentTimeMillis());
     		}
-    		if(System.currentTimeMillis() + 750 > startTime && !triggerEngage) {
+    		if((System.currentTimeMillis() > startTime + 750 ) && !triggerEngage) {
     			RobotMap.shooterTriggerSol.set(Value.kForward); 
     			triggerEngage = true;
+    			System.out.println("Engage Trigger " + System.currentTimeMillis());
     		}
-    		if(System.currentTimeMillis() + 900 > startTime && !engagePistons) {
+    		if((System.currentTimeMillis() > startTime + 900 ) && !engagePistons) {
     			RobotMap.shooterOneSol.set(Value.kForward);
     			RobotMap.shooterTwoSol.set(Value.kForward);
     			engagePistons = true;
     			doneShooting = true;
+    			System.out.println("Engage pistons " + System.currentTimeMillis());
     		}
-    		
-    		
-    		
+    				
     	}
     }
 
@@ -74,6 +79,7 @@ public class Shoot extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//Robot.chassis.shooting = false;
+    	System.out.println("Shoot completed");
     }
 
     // Called when another command which requires one or more of the same
