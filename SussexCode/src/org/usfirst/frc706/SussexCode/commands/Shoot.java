@@ -22,6 +22,11 @@ public class Shoot extends Command {
 	protected void initialize() {
 		//Robot.chassis.shooting = true;
 		startTime = System.currentTimeMillis(); 
+		triggerRelease = false;
+		pistonRetract = false;
+		triggerEngage = false;
+		engagePistons = false;
+		doneShooting = false;
 	}
 
     // Called repeatedly when this Command is scheduled to run

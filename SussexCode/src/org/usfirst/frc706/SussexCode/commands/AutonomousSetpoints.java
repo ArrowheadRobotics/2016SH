@@ -27,6 +27,7 @@ public class AutonomousSetpoints extends Command {
 	String intakePos;
 	String shooterPos;
 	boolean done = false;
+	public boolean atPos = false;
 	
     public AutonomousSetpoints(String intake, String shooter) {
     	intakePos = intake;
@@ -55,7 +56,7 @@ public class AutonomousSetpoints extends Command {
     	
     	switch(intakePos){
     	case "vertical":
-    		Timer.delay(2);
+    		//Timer.delay(2);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		break;
     	case "horizontal":
@@ -72,7 +73,7 @@ public class AutonomousSetpoints extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	Timer.delay(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

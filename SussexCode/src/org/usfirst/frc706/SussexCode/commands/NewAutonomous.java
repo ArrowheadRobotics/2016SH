@@ -13,7 +13,7 @@ public class NewAutonomous extends CommandGroup {
 	
 	
 	private int toPortcullis = Constants.Autonomous.TO_PORTCULLIS;
-	private int liftPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
+	private int liftPortcullis = Constants.Autonomous.LIFT_PORTCULLIS;
 	private int overPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
 	private double defaultSpeed = Constants.Autonomous.DEFAULT_SPEED;
 	private int toCheval = Constants.Autonomous.TO_CHEVAL;
@@ -37,11 +37,14 @@ public class NewAutonomous extends CommandGroup {
     	addSequential(new Zero());
     	addSequential(new GearLow());
     	
-    	System.out.println("New Defense:" + Robot.chassis.defense);
+    	System.out.println("New Defense:" + newDefense);
     	switch(newDefense){
 		case 0: //Crosses portcullis
 			System.out.println("portcullis");
+			addSequential(new AutonIntakeDrive(-1));
 			addSequential(new AutonomousSetpoints("horizontal","down"));
+			addSequential(new Delay(0.5));
+			addSequential(new IntakeStop());
 			addSequential(new AutonomousDrive(toPortcullis,defaultSpeed));
 			addSequential(new AutonomousSetpoints("lower","down"));
     		addSequential(new AutonomousDrive(liftPortcullis, defaultSpeed));
@@ -59,7 +62,7 @@ public class NewAutonomous extends CommandGroup {
 			break;
 		case 2: //Crosses the moat
 			System.out.println("moat");
-			addSequential(new Setpoints("hold"));
+			addSequential(new AutonomousSetpoints("vertical","hold"));
     		addSequential(new AutonomousDrive(overMoat,moatSpeed));
     		break;
 		case 3: //Crosses the ramparts
@@ -87,7 +90,10 @@ public class NewAutonomous extends CommandGroup {
     		break;
 		case 8: //Goes under the low bar
 			System.out.println("lowbar");
+			addSequential(new AutonIntakeDrive(-1));
 			addSequential(new AutonomousSetpoints("horizontal","down"));
+			addSequential(new Delay(0.5));
+			addSequential(new IntakeStop());
     		addSequential(new AutonomousDrive(underBar,defaultSpeed));
     		break;
     	default:
