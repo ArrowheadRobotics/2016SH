@@ -19,6 +19,7 @@ public class EngageWinch extends Command {
     	if(Robot.oi.winchButton1.get() && Robot.oi.winchButton2.get()) {
     		bothWinch = true;
     	}
+    	RobotMap.chassisGearSol.set(Value.kReverse); 
     	
     }
 
@@ -32,7 +33,6 @@ public class EngageWinch extends Command {
     		RobotMap.shootershooterAngleDrive.enableBrakeMode(false);
     		RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.PercentVbus);
     		RobotMap.shootershooterAngleDrive.set(0);
-    		RobotMap.chassisGearSol.set(Value.kReverse);
     		RobotMap.winchPTO.set(DoubleSolenoid.Value.kReverse);
     	
     	}
