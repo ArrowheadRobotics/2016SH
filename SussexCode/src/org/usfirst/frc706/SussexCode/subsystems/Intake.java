@@ -18,6 +18,8 @@ public class Intake extends Subsystem {
     public final double D = Constants.PID.D_INTAKE;
     
 	public int position;
+	public boolean manualIntake = true;
+	public boolean tele = false;
 	public boolean hasZeroed;
 	public boolean stopPositionSet = false;
 	public String shooterArmFromLocation = "";
