@@ -125,7 +125,7 @@ public class Constants {
 		public static final int LOWBAR_DISTANCE = 15000;
 		
 		//Speeds
-		public static final double DEFAULT_SPEED = -0.4;
+		public static final double DEFAULT_SPEED = -0.6;
 		public static final double CHEVAL_SPEED = -0.8;
 		public static final double MOAT_SPEED = -1;
 		public static final double RAMPART_SPEED = -0.8;

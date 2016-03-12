@@ -11,9 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class NewAutonomous extends CommandGroup {
 	
-	private int defense;
-	private int robotPosition;
-	private int defensePosition;
+	
 	private int toPortcullis = Constants.Autonomous.TO_PORTCULLIS;
 	private int liftPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
 	private int overPortcullis = Constants.Autonomous.OVER_PORTCULLIS;
@@ -33,17 +31,13 @@ public class NewAutonomous extends CommandGroup {
 
     public NewAutonomous() {
     	
-    	defense = (int) Robot.def.getSelected();
-    	defensePosition = (int) Robot.dpos.getSelected();
-    	robotPosition = (int) Robot.rpos.getSelected();
+    	addSequential(new AutonStartup());
     	
     	addSequential(new Zero());
     	addSequential(new GearLow());
     	
-    	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-    	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	
-    	switch(defense){
+    	switch(Robot.chassis.defense){
 		case 0: //Crosses portcullis
 			addSequential(new AutonomousSetpoints("horizontal","down"));
 			addSequential(new AutonomousDrive(toPortcullis,defaultSpeed));

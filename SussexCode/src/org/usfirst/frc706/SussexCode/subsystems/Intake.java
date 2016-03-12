@@ -35,7 +35,7 @@ public class Intake extends Subsystem {
     }
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new IntakePos());
+    	//setDefaultCommand(new IntakePos());
     }
 
     //Changes the target position of the arm

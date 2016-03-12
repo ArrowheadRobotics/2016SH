@@ -37,10 +37,7 @@ public class AutonomousSetpoints extends Command {
     protected void initialize() {
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    	
     	switch(shooterPos){
     	case "top":
     		RobotMap.shootershooterAngleDrive.set(Constants.Setpoints.SHOOTER_TOP);
@@ -62,7 +59,10 @@ public class AutonomousSetpoints extends Command {
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_VERTICAL);
     		break;
     	case "horizontal":
+    		RobotMap.intakeintakeAngleDrive.enable();
+    		RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_HORIZONTAL);
+    		System.out.println("horizontal");
     		break;
     	case "lower":
     		RobotMap.intakeintakeAngleDrive.set(Constants.Setpoints.INTAKE_LOWER);
@@ -70,9 +70,14 @@ public class AutonomousSetpoints extends Command {
     	}
     }
 
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	
+    }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return true;
     }
 
     // Called once after isFinished returns true

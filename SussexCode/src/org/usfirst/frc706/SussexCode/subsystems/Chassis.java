@@ -12,6 +12,10 @@ public class Chassis extends Subsystem {
     private final CANTalon leftDriveOne = RobotMap.chassisleftDriveOne;
     private final CANTalon leftDriveTwo = RobotMap.chassisleftDriveTwo;
 	
+    public int defense;
+	public int robotPosition;
+	public int defensePosition;
+    
     public boolean climb = false;
     public boolean climbDrive = false;
     public boolean shooting = false;
