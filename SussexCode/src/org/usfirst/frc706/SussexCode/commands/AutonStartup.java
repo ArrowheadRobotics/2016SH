@@ -42,10 +42,10 @@ public class AutonStartup extends Command {
     	RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     	RobotMap.shootershooterAngleDrive.changeControlMode(TalonControlMode.Position);
     	
-    	Robot.chassis.defense = (int) Robot.def.getSelected();
-    	System.out.println("Defense: " + Robot.chassis.defense);
-    	Robot.chassis.defensePosition = (int) Robot.dpos.getSelected();
-    	Robot.chassis.robotPosition = (int) Robot.rpos.getSelected();
+    	//Robot.chassis.defense = (int)Robot.def.getSelected();
+    	System.out.println("Defense: " + Robot.def.getTable().toString());
+    	//Robot.chassis.defensePosition = (int) Robot.dpos.getSelected();
+    	//Robot.chassis.robotPosition = (int) Robot.rpos.getSelected();
     }
 
     // Called repeatedly when this Command is scheduled to run

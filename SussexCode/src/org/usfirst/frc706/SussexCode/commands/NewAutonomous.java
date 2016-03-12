@@ -28,19 +28,19 @@ public class NewAutonomous extends CommandGroup {
 	private double rockwallSpeed = Constants.Autonomous.ROCKWALL_SPEED;
 	private int overTerrain = Constants.Autonomous.TERRAIN_DISTANCE;
 	private int underBar = Constants.Autonomous.LOWBAR_DISTANCE;
-	private int newDefense = 1;
+	private int defense = 0;
 
+	
     public NewAutonomous() {
     	
-    	//addSequential(new AutonStartup());
+    	addSequential(new AutonStartup());
     	
     	addSequential(new Zero());
     	addSequential(new GearLow());
     	
-    	System.out.println("New Defense:" + newDefense);
-    	switch(newDefense){
+    	
+    	switch(defense){
 		case 0: //Crosses portcullis
-			System.out.println("portcullis");
 			addSequential(new AutonIntakeDrive(-1));
 			addSequential(new AutonomousSetpoints("horizontal","down"));
 			addSequential(new Delay(0.5));
@@ -70,13 +70,15 @@ public class NewAutonomous extends CommandGroup {
 			addSequential(new AutonomousSetpoints("vertical","hold"));
     		addSequential(new AutonomousDrive(overRamparts,rampartSpeed));
     		break;
-		case 4: //Crosses sally port
+		case 4: //Crosses drawbridge
 			System.out.println("not doing anything");
-			Robot.chassis.move(0, 0);
+			addSequential(new AutonomousSetpoints("vertical","hold"));
+			addSequential(new AutonomousDrive(6000,-0.4));
 			break;
-		case 5: //Crosses draw bridge
+		case 5: //Crosses sally port
 			System.out.println("not doing anything");
-			Robot.chassis.move(0, 0);
+			addSequential(new AutonomousSetpoints("vertical","hold"));
+			addSequential(new AutonomousDrive(6000,-0.4));
 			break;
 		case 6: //Crosses the rock wall
 			System.out.println("rockwall");
