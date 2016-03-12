@@ -13,11 +13,12 @@ public class Shoot extends Command {
     }
 
 	protected void initialize() {
+		Robot.chassis.shooting = true;
 	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.shooter.shooterAngleDrive.getEncPosition() < -2000) {
+    	if(Robot.shooter.shooterAngleDrive.getEncPosition() > -2000) {
     		Robot.shooter.shooterTriggerSol.set(Value.kReverse);
     		Timer.delay(.25);
     		RobotMap.shooterOneSol.set(Value.kReverse);
@@ -37,6 +38,7 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.chassis.shooting = false;
     }
 
     // Called when another command which requires one or more of the same

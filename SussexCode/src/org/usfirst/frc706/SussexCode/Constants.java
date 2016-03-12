@@ -5,7 +5,7 @@ public class Constants {
 	public class Setpoints {
 		//Intake
 		public static final int INTAKE_VERTICAL = -2700; 
-		public static final int INTAKE_HORIZONTAL = -975;
+		public static final int INTAKE_HORIZONTAL = -870;
 		public static final int INTAKE_LOWER = -150;
 		
 		//Shooter

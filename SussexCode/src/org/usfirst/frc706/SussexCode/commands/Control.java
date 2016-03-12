@@ -2,6 +2,8 @@ package org.usfirst.frc706.SussexCode.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
@@ -16,8 +18,9 @@ public class Control extends Command {
     	RobotMap.shootershooterAngleDrive.enableBrakeMode(true);
     	Robot.shooter.stopPositionSet = false;
     	RobotMap.winchPTO.set(DoubleSolenoid.Value.kForward);
+    	RobotMap.chassisGearSol.set(Value.kForward);
     	Robot.chassis.climb = false;
-    	Robot.chassis.climbDrive = true;
+    	Robot.chassis.climbDrive = false;
     }
 
     // Called repeatedly when this Command is scheduled to run

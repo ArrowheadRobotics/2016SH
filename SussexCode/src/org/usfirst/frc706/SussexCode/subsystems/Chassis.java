@@ -14,6 +14,7 @@ public class Chassis extends Subsystem {
 	
     public boolean climb = false;
     public boolean climbDrive = false;
+    public boolean shooting = false;
     
     public Chassis() {
     	RobotMap.chassisGearSol.set(Value.kForward); //Initialize into high gear
