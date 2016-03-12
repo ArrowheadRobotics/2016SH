@@ -13,6 +13,7 @@ public class IntakeDrive extends Command {
     }
 
     protected void initialize() {
+    	Robot.intake.manualIntake = true;
     }
 
     protected void execute() {

@@ -21,6 +21,7 @@ public class IntakePos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.intake.tele) {
     	if(Robot.oi.xbox.getRawAxis(5) > 0.1 || Robot.oi.xbox.getRawAxis(5) < -0.1)
     	{
     		Robot.intake.stopPositionSet = true;
@@ -63,6 +64,7 @@ public class IntakePos extends Command {
     			RobotMap.intakeintakeAngleDrive.changeControlMode(TalonControlMode.Position);
     			RobotMap.intakeintakeAngleDrive.set(Robot.intake.position);
     		}
+    	}
     	}
     	//System.out.println("Intake Pos: " + RobotMap.intakeintakeAngleDrive.getEncPosition());
     }

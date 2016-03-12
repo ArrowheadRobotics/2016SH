@@ -42,11 +42,13 @@ public class IntakeLiftDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(RobotMap.shootershooterAngleDrive.getEncVelocity() > 75 || RobotMap.shootershooterAngleDrive.getEncVelocity() < -75) {
-    		RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity() * 0.002);
-    	}
-    	else {
-    		RobotMap.intakeintakeDrive.set(0);
+    	if(!Robot.intake.manualIntake) {
+    		if(RobotMap.shootershooterAngleDrive.getEncVelocity() > 75 || RobotMap.shootershooterAngleDrive.getEncVelocity() < -75) {
+    			RobotMap.intakeintakeDrive.set(RobotMap.shootershooterAngleDrive.getEncVelocity() * 0.002);
+    		}
+    		else {
+    			RobotMap.intakeintakeDrive.set(0);
+    		}
     	}
     }
 

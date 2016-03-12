@@ -7,38 +7,52 @@ import org.usfirst.frc706.SussexCode.Robot;
 import org.usfirst.frc706.SussexCode.RobotMap;
 
 public class Shoot extends Command {
+	
+	public long startTime;
+	public boolean triggerRelease = false;
+	public boolean pistonRetract = false;
+	public boolean triggerEngage = false;
+	public boolean engagePistons = false;
+	public boolean doneShooting = false;
 
     public Shoot() {
     	requires(Robot.shooter);
     }
 
 	protected void initialize() {
-		Robot.chassis.shooting = true;
+		//Robot.chassis.shooting = true;
+		startTime = System.currentTimeMillis(); 
 	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.shooter.shooterAngleDrive.getEncPosition() > -2000) {
-    		Robot.shooter.shooterTriggerSol.set(Value.kReverse);
+    		/*Robot.shooter.shooterTriggerSol.set(Value.kReverse); //TRIGGER RELEASE
     		Timer.delay(.25);
-    		RobotMap.shooterOneSol.set(Value.kReverse);
+    		RobotMap.shooterOneSol.set(Value.kReverse); //RETRACTION
     		RobotMap.shooterTwoSol.set(Value.kReverse);
     		Timer.delay(.5);
-    		RobotMap.shooterTriggerSol.set(Value.kForward);
+    		RobotMap.shooterTriggerSol.set(Value.kForward); //RE-ENGAGE TRIGGER
     		Timer.delay(.15);
-    		RobotMap.shooterOneSol.set(Value.kForward);
-    		RobotMap.shooterTwoSol.set(Value.kForward);
+    		RobotMap.shooterOneSol.set(Value.kForward); //RE-PRIME PISTONS
+    		RobotMap.shooterTwoSol.set(Value.kForward);*/
+    		
+    		if(System.currentTimeMillis() + 250 > startTime && !triggerRelease) {
+    			
+    		}
+    		
+    		
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return doneShooting;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.shooting = false;
+    	//Robot.chassis.shooting = false;
     }
 
     // Called when another command which requires one or more of the same

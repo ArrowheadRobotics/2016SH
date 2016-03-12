@@ -77,6 +77,7 @@ public class Setpoints extends Command {
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
     				Robot.shooter.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
     				RobotMap.intakeintakeDrive.set(0.5);
+    				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
     				break;
     			case "hold":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
