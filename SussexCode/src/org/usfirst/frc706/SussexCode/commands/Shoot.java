@@ -36,10 +36,26 @@ public class Shoot extends Command {
     		Timer.delay(.15);
     		RobotMap.shooterOneSol.set(Value.kForward); //RE-PRIME PISTONS
     		RobotMap.shooterTwoSol.set(Value.kForward);*/
-    		
-    		if(System.currentTimeMillis() + 250 > startTime && !triggerRelease) {
-    			
+    		if(!triggerRelease) {
+    			Robot.shooter.shooterTriggerSol.set(Value.kReverse);
+    			triggerRelease = true;
     		}
+    		if(System.currentTimeMillis() + 250 > startTime && !pistonRetract) {
+    			RobotMap.shooterOneSol.set(Value.kReverse); 
+        		RobotMap.shooterTwoSol.set(Value.kReverse);
+    			pistonRetract = true;
+    		}
+    		if(System.currentTimeMillis() + 750 > startTime && !triggerEngage) {
+    			RobotMap.shooterTriggerSol.set(Value.kForward); 
+    			triggerEngage = true;
+    		}
+    		if(System.currentTimeMillis() + 900 > startTime && !engagePistons) {
+    			RobotMap.shooterOneSol.set(Value.kForward);
+    			RobotMap.shooterTwoSol.set(Value.kForward);
+    			engagePistons = true;
+    			doneShooting = true;
+    		}
+    		
     		
     		
     	}
