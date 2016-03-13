@@ -4,7 +4,7 @@ public class Constants {
 	
 	public class Setpoints {
 		//Intake
-		public static final int INTAKE_VERTICAL = -2700; 
+		public static final int INTAKE_VERTICAL = -2750; 
 		public static final int INTAKE_HORIZONTAL = -870;
 		public static final int INTAKE_LOWER = -150;
 		
@@ -96,7 +96,7 @@ public class Constants {
 		public static final double WINCH_DRIVE_SPEED = 1;
 		
 		//Other & Shared
-		public static final double ZERO_SPEED = 0.4;
+		public static final double ZERO_SPEED = 0.6;
 	}
 	
 	public class Encoders {
