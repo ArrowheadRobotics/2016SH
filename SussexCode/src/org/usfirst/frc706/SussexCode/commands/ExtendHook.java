@@ -41,14 +41,13 @@ public class ExtendHook extends Command {
     		Timer.delay(1);
     	
     		//lower arm slightly onto hanging bar
-    		RobotMap.shootershooterAngleDrive.set(-2100);
-    		Timer.delay(.5);
+    		RobotMap.shootershooterAngleDrive.set(-2175);
+    		Timer.delay(1);
     		
     		//retract hook
     		RobotMap.hookSol.set(DoubleSolenoid.Value.kReverse);
     		Timer.delay(.25);
     		
-    		RobotMap.shootershooterAngleDrive.set(-1300);
     		Robot.shooter.stopPositionSet = true;
     		//System.out.println("CONTRL MODE : " + RobotMap.shootershooterAngleDrive.getControlMode());
     		

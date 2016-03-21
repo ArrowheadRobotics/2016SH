@@ -1,0 +1,14 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="0" y="0"/>
+		<width>772</width>
+		<height>458</height>
+	</static-widget>
+	<widget field="Defense" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="784" y="16"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

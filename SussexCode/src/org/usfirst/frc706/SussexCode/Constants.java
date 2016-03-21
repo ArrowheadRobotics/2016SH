@@ -68,20 +68,20 @@ public class Constants {
 	
 	public class PCM {
 		//PCM IDs
-		public static final int PCM_ONE_ID = 10;
-		public static final int PCM_TWO_ID = 9;
+		public static final int PCM_ONE_ID = 9;
+		public static final int PCM_TWO_ID = 10;
 		
 		//Shooter
-		public static final int SHOOTER_SOL_ONE_FORWARD = 3;
-		public static final int SHOOTER_SOL_ONE_REVERSE = 0;
-		public static final int SHOOTER_SOL_TWO_FORWARD = 1;
-		public static final int SHOOTER_SOL_TWO_REVERSE = 2;
+		public static final int SHOOTER_SOL_ONE_FORWARD = 0;
+		public static final int SHOOTER_SOL_ONE_REVERSE = 3;
+		public static final int SHOOTER_SOL_TWO_FORWARD = 2;
+		public static final int SHOOTER_SOL_TWO_REVERSE = 1;
 		public static final int TRIGGER_SOL_FORWARD = 4;
 		public static final int TRIGGER_SOL_REVERSE = 5;
 		
 		//Winch
-		public static final int PTO_FORWARD = 2;
-		public static final int PTO_REVERSE = 3;
+		public static final int PTO_FORWARD = 3;
+		public static final int PTO_REVERSE = 2;
 	}
 	
 	public class Speeds {
@@ -115,8 +115,8 @@ public class Constants {
 		public static final int TO_PORTCULLIS = 6500;
 		public static final int LIFT_PORTCULLIS = 1000;
 		public static final int OVER_PORTCULLIS = 10000;
-		public static final int TO_CHEVAL = 6900;
-		public static final int ON_CHEVAL = 5000;
+		public static final int TO_CHEVAL = 4500;
+		public static final int ON_CHEVAL = 3000; //5000
 		public static final int OVER_CHEVAL = 12000;
 		public static final int MOAT_DISTANCE = 25000;
 		public static final int RAMPART_DISTANCE = 25000;

@@ -10,6 +10,7 @@ public class Setpoints extends Command {
 	public String goToLocation = "";
 	public static String fromLocation = "";
 	public String delayWhat = "";
+	public long startTime;
 	
     public Setpoints(String setPoint) {
     	goToLocation = setPoint;
@@ -57,7 +58,7 @@ public class Setpoints extends Command {
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
     				System.out.println("activating shooter arm");
     				delayWhat = "intake";
-    				RobotMap.intakeintakeDrive.set(0.5);
+    				RobotMap.intakeintakeDrive.set(1);
     				break;
     			case "hold":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_HOLD);
@@ -76,7 +77,7 @@ public class Setpoints extends Command {
     			case "intake":
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
     				Robot.shooter.changePos(Constants.Setpoints.INTAKE_HORIZONTAL);
-    				RobotMap.intakeintakeDrive.set(0.5);
+    				RobotMap.intakeintakeDrive.set(1);
     				Robot.shooter.changePos(Constants.Setpoints.SHOOTER_TOP);
     				break;
     			case "hold":
@@ -104,7 +105,7 @@ public class Setpoints extends Command {
         if(delayWhat.equals("intake"))
         {
         	//System.out.println(RobotMap.shootershooterAngleDrive.getEncPosition());
-        	if(RobotMap.shootershooterAngleDrive.getEncPosition() < -4450)
+        	if(RobotMap.shootershooterAngleDrive.getEncPosition() < -5000)
         		return false;
         }
         else if(delayWhat.equals("shooter"))
